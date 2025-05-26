@@ -55,7 +55,7 @@
 
 // export default About;
 import { ArrowRight } from "lucide-react";
-import BannerBg from "/assets/press-2.jpg";
+import BannerBg from "/assets/About.jpg";
 import { useNavigate } from "react-router-dom";
 const About = () => {
   const navigate = useNavigate();
