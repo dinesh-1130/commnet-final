@@ -86,7 +86,7 @@ export default function WhyChooseUs() {
         </div>
       </section>
 
-{/* 
+
 <section className="relative py-24  text-gray-800 overflow-hidden">
  
   <div className="max-w-7xl mx-auto px-6 relative z-10">
@@ -128,10 +128,10 @@ export default function WhyChooseUs() {
       </div>
     </div>
   </div>
-</section> */}
+</section>
 
 
-<section className="relative py-10 text-gray-800 overflow-hidden">
+{/* <section className="relative py-10 text-gray-800 overflow-hidden">
   <div className="max-w-7xl mx-auto px-6 relative z-10">
     <div className="text-center mb-10">
       <span className="inline-block py-1 px-3 rounded-full bg-red-100 text-red-600 text-xs font-semibold tracking-wider mb-4">
@@ -168,7 +168,7 @@ export default function WhyChooseUs() {
       </div>
     </div>
   </div>
-</section>
+</section> */}
 
 
 

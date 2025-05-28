@@ -100,7 +100,7 @@ export default function HeroSection() {
   playsInline
   className="absolute top-0 left-0 w-full h-full object-cover z-0"
 >
-  <source src="/assets/hero-2.webm" type="video/webm" />
+  <source src="/assets/web.webm" type="video/webm" />
   Your browser does not support the video tag.
 </video>
 
