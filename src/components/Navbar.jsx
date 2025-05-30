@@ -933,7 +933,7 @@ export default function Navbar() {
           <img
             src="/assets/logo-newone.png"
             alt="COMMNET Logo"
-            className="h-12 w-auto"
+            className="h-14 w-auto"
           />
         </a>
 
@@ -999,9 +999,9 @@ export default function Navbar() {
                 key={index}
                 to={service.link}
                 onClick={() => setActiveDropdown(null)}
-                className="flex items-center space-x-3 hover:text-sky-600 transition-colors duration-200"
+                className="flex items-center space-x-3 hover:text-sky-500 transition-colors duration-200"
               >
-                <div className="text-black hover:text-sky-600 transition-colors duration-200">{service.icon}</div>
+                <div className="text-black hover:text-sky-500 transition-colors duration-200">{service.icon}</div>
                 <div className="text-sm font-medium">{service.label}</div>
               </NavLink>
             ))}
@@ -1028,9 +1028,9 @@ export default function Navbar() {
                   key={index}
                   to={item.link}
                   onClick={() => setActiveDropdown(null)}
-                  className="flex items-center space-x-3 hover:text-sky-600 transition-colors duration-200"
+                  className="flex items-center space-x-3 hover:text-sky-500 transition-colors duration-200"
                 >
-                  <div className="w-10 h-10 rounded-full bg-gray-100 text-black hover:bg-sky-600 hover:text-white flex items-center justify-center transition-all duration-200">
+                  <div className="w-10 h-10 rounded-full bg-gray-100 text-black hover:bg-sky-500 hover:text-white flex items-center justify-center transition-all duration-200">
                     {item.icon}
                   </div>
                   <div>
