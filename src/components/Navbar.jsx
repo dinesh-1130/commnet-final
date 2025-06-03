@@ -219,22 +219,20 @@ const [mobileVerticlesOpen, setMobileVerticlesOpen] = useState(false);
               </NavLink>
             ))}
           </div>
-          <div className="col-span-3">
-            {/* Right column content removed as per original */}
-          </div>
+          
         </div>
       )}
 
       {/* Desktop About Us Dropdown - Now white background with black text */}
       {activeDropdown === 'about' && (
         <div
-          className="hidden lg:grid fixed top-[65px] left-0 w-full z-40 px-12 py-12 bg-white text-black grid-cols-12 gap-6 shadow-lg"
+          className="hidden lg:grid fixed top-[65px] left-0 w-full z-40 px-12 py-12 bg-transparent text-black grid-cols-12 gap-6 "
           data-aos="fade-down"
         >
-          <div className="col-span-3 border-r pr-6">
+          <div className="col-span-4 pr-6">
             {/* Left column content removed as per original */}
           </div>
-          <div className="col-span-6 px-6 border-r">
+          <div className="col-span-2 bg-white px-6 p-6">
             <div className="flex flex-col items-center justify-center gap-6 h-full">
               {aboutItems.map((item, index) => (
                 <NavLink

@@ -354,7 +354,7 @@ export default function RNCShowcasePage() {
         <p className="text-base sm:text-lg max-w-3xl mx-auto mb-8">
           From industrial UPS systems to customized control panels and real-time battery monitoring, RNC delivers engineering-backed excellence. Let’s keep your power running.
         </p>
-        <img src="/assets/verticle/Ver-5.jpg" className="rounded-xl shadow-xl mx-auto" alt="Reliable Power" />
+        {/* <img src="/assets/verticle/Ver-5.jpg" className="rounded-xl shadow-xl mx-auto" alt="Reliable Power" /> */}
       </section>
     </div>
   );

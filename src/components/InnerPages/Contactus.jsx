@@ -51,7 +51,7 @@ const handleSubmit = async (e) => {
       }),
     });
     console.log(response);
-    setFormdata({ name: "", email: "", phone: "", message: "" });
+    setFormdata({ name: "", email: "", phone: "",country:"",city:"",company:"", message: "" });
   };
 
   return (

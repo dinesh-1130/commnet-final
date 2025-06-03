@@ -246,7 +246,7 @@ export default function DevinkShowcasePage() {
         <p className="text-base sm:text-lg max-w-3xl mx-auto mb-8" data-aos="fade-up" data-aos-delay="200">
           Whether it's commercial, residential, or industrial – lighting design begins with purpose. 
         </p>
-        <img src="/assets/verticle/v8.jpg" className="rounded-xl shadow-xl mx-auto" alt="CTA" data-aos="fade-up" data-aos-delay="400" />
+        {/* <img src="/assets/verticle/v8.jpg" className="rounded-xl shadow-xl mx-auto" alt="CTA" data-aos="fade-up" data-aos-delay="400" /> */}
       </section>
     </div>
   );
