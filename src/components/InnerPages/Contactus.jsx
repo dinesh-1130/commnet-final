@@ -1,18 +1,57 @@
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect,useState} from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { Building2, Phone, Mail, MapPin } from "lucide-react";
 
+
+const id="AKfycbwdVNqotD8ohe3dtdIrUZuKVIayaPSmzTRMgf50Z8HZICtxrU_sI5gpueAs5_DcKCIO"
+const url="https://script.google.com/macros/s/AKfycbwdVNqotD8ohe3dtdIrUZuKVIayaPSmzTRMgf50Z8HZICtxrU_sI5gpueAs5_DcKCIO/exec"
 export default function ContactPage() {
   const contactRef = useRef(null);
 
+  const [formdata, setFormdata] = useState({
+    name:"",
+    email:"",
+    phone:"",
+    country:"",
+    city:"",
+    message:"",
+     type:"contact",
+  })
   useEffect(() => {
     AOS.init({ duration: 800, once: true });
   }, []);
 
   const scrollToContact = () => {
     contactRef.current.scrollIntoView({ behavior: "smooth" });
+  };
+const handleSubmit = async (e) => {
+    e.preventDefault();
+    // Handle form submission logic here
+
+    const response = await fetch(url, {
+      method: "POST",
+      mode: "no-cors",
+
+      headers: {
+        "Content-Type": "application/x-form-urlencoded",
+      },
+      body: JSON.stringify(formdata, {
+        name: formdata.name,
+        email: formdata.email,
+        phone: formdata.phone,
+        country:formdata.country,
+        city:formdata.city,
+        message: formdata.message,
+        type:"contact",
+
+        token: id,
+     
+      }),
+    });
+    console.log(response);
+    setFormdata({ name: "", email: "", phone: "", message: "" });
   };
 
   return (
@@ -93,7 +132,8 @@ export default function ContactPage() {
           {/* Right Column (Form) */}
           <div className="w-full md:w-2/3" data-aos="fade-left">
             <h2 className="text-3xl font-bold mb-6">Enquire Now</h2>
-            <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <form className="grid grid-cols-1 md:grid-cols-2 gap-6"
+            onSubmit={handleSubmit}>
               {/* <input
                 placeholder="Select Enquiry Subject"
                 className="border-b p-2 outline-none"
@@ -102,16 +142,24 @@ export default function ContactPage() {
               <input
                 placeholder="Your Name"
                 className="border-b p-2 outline-none"
+                value={formdata.name}
+                onChange={((e)=>setFormdata({...formdata,name:e.target.value}))}
               />
-              <input placeholder="Phone" className="border-b p-2 outline-none" />
-              <input placeholder="Email" className="border-b p-2 outline-none" />
+              <input placeholder="Phone" className="border-b p-2 outline-none"
+               value={formdata.phone}
+                onChange={((e)=>setFormdata({...formdata,phone:e.target.value}))} />
+              <input placeholder="Email" className="border-b p-2 outline-none" 
+               value={formdata.email}
+                onChange={((e)=>setFormdata({...formdata,email:e.target.value}))}/>
               {/* <input
-                placeholder="Job Title"
+                placeholder="Jb Title"
                 className="border-b p-2 outline-none"
               /> */}
               <input
                 placeholder="Company Name"
                 className="border-b p-2 outline-none"
+                   value={formdata.company}
+                onChange={((e)=>setFormdata({...formdata,company:e.target.value}))}
               />
               {/* <input
                 placeholder="Industry"
@@ -120,11 +168,18 @@ export default function ContactPage() {
               <input
                 placeholder="Country"
                 className="border-b p-2 outline-none"
+                 value={formdata.country}
+                onChange={((e)=>setFormdata({...formdata,country:e.target.value}))}
               />
-              <input placeholder="City" className="border-b p-2 outline-none" />
+              <input placeholder="City" className="border-b p-2 outline-none" 
+              value={formdata.city}
+                onChange={((e)=>setFormdata({...formdata,city:e.target.value}))}
+              />
               <textarea
                 placeholder="Your Message"
                 className="border-b p-2 outline-none col-span-1 md:col-span-2"
+                 value={formdata.message}
+                onChange={((e)=>setFormdata({...formdata,message:e.target.value}))}
               ></textarea>
               <button
                 type="submit"
