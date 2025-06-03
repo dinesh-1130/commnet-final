@@ -374,14 +374,14 @@ const [mobileVerticlesOpen, setMobileVerticlesOpen] = useState(false);
 
 {mobileVerticlesOpen && (
   <ul className="ml-4 mt-2 space-y-3 text-sm font-normal">
-    <NavLink
-  to="/Verticles"
+    <a
+  href="/Verticles"
   onClick={() => setActiveDropdown(null)}
   className="flex items-center space-x-3 hover:text-sky-500 transition-colors duration-200"
 >
   <Zap />
   <span className="text-sm font-medium">Lightning Solutions</span>
-</NavLink>
+</a>
     <li>
       <a href="/Verticles3" onClick={() => setMobileMenuOpen(false)} className="flex items-center space-x-2">
         <BatteryCharging />
