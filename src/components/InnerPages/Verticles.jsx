@@ -1,236 +1,4 @@
 
-// import React from "react";
-// import { CheckCircle, LayoutTemplate, Workflow, Star, Settings, Users } from "lucide-react";
-
-// export default function DevinkShowcasePage() {
-//   const processLeft = [
-//     "Project Base Informations.",
-//     "Architectural Base Designs.",
-//     "Electrical Base Designs.",
-//     "Project Completion plan and milestone activity schedule.",
-//     "Estimated budget.",
-//     "Interior Designs with Lighting, Furniture and other Equipment.",
-//     "Lighting Dialux Calculations Reports."
-//   ];
-  
-//   const processRight = [
-//     "AUTO CAD and PDF Lighting Layout.",
-//     "Individual Luminaire Specifications.",
-//     "General Lighting Technical Specifications.",
-//     "Project duration Milestone Charts.",
-//     "3D Rendering.",
-//     "Tender Documentations.",
-//     "Project Budgeting with actual and value engineering as per needs.",
-//     "Product sourcing and manufacturer details to customer for direct purchase.",
-//     "Installation Methodology.",
-//     "Walk Through Videos."
-//   ];
-  
-//   const chooseUs = [
-//     { icon: <Workflow size={28} />, text: "One stop for all your lighting design solutions" },
-//     { icon: <Settings size={28} />, text: "Strong source base" },
-//     { icon: <Users size={28} />, text: "Experience in multi-culture projects" },
-//     { icon: <LayoutTemplate size={28} />, text: "Faster design completion schedule" },
-//     { icon: <Star size={28} />, text: "Value for money" }
-//   ];
-  
-//   const verticals = [
-//     "Commercial", "Residential", "Shopping Malls", "Hospitality", "Sports Facilities",
-//     "Facade", "Healthcare Facilities", "Schools & Educational Facilities", "Cultural & Heritage Sites"
-//   ];
-
-//   return (
-//     <div className="bg-white font-sans text-gray-800">
-//       <header className="relative bg-cover bg-center bg-no-repeat text-white py-16 md:py-24 px-4 sm:px-6 lg:px-20 text-center" style={{ backgroundImage: "url(/assets/sample-5.jpg)" }}>
-//   <div className="bg-black/40 absolute inset-0 z-0"></div>
-//   <div className="relative z-10 max-w-4xl mx-auto">
-//     <h1 className="text-3xl sm:text-4xl md:text-6xl font-extrabold tracking-wide">Lightning Solutions</h1>
-//     <p className="mt-8 text-base sm:text-lg md:text-xl font-light">Engineering Elegance with Light</p>
-//   </div>
-// </header>
-
-
-//       {/* About Us */}
-//       <section className="px-4 sm:px-6 lg:px-20 py-16 md:py-20 max-w-7xl mx-auto text-center">
-//         <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-sky-600 mb-6">About Us</h2>
-//         <img src="/assets/pw-1.jpg" className="rounded-xl w-full mb-8 shadow-xl" alt="About" />
-//        <p className="text-base sm:text-lg leading-relaxed max-w-3xl mx-auto">
-//   Lighting solutions play a crucial role in shaping the ambiance, functionality, and energy efficiency of any space. From architectural highlights to task-specific illumination, modern lighting design focuses on enhancing comfort, aesthetics, and sustainability. With the right strategy, lighting transforms environments—improving productivity in workplaces, adding warmth to homes, and elevating the experience in commercial and public spaces.
-// </p>
-
-//       </section>
-
-//       {/* Our Process */}
-//       {/* <section className="bg-gray-50 px-4 sm:px-6 lg:px-20 py-20">
-//         <h2 className="text-4xl font-bold text-center text-sky-700 mb-12 tracking-wide uppercase">Our Process</h2>
-//         <div className="grid md:grid-cols-2 gap-10 max-w-6xl mx-auto">
-//           {[processLeft, processRight].map((list, i) => (
-//             <div key={i} className="bg-white border border-gray-200 rounded-2xl shadow-lg p-6 space-y-4 hover:shadow-xl transition-shadow duration-300">
-//               {list.map((item, idx) => (
-//                 <div key={idx} className="flex items-start gap-3 hover:bg-gray-50 p-2 rounded-lg transition-colors">
-//                   <CheckCircle className="text-green-600 mt-1 flex-shrink-0" size={20} />
-//                   <p className="text-sm sm:text-base">{item}</p>
-//                 </div>
-//               ))}
-//             </div>
-//           ))}
-//         </div>
-//       </section> */}
-
-//      <section className="bg-gray-50 py-20 px-4 sm:px-10 lg:px-24">
-//   <div className="text-center mb-16">
-//     <h2 className="text-4xl font-extrabold tracking-wide text-sky-800 uppercase">Our Process</h2>
-//     <p className="mt-4 text-gray-500 max-w-2xl mx-auto text-base sm:text-lg">
-//       From diagnostics to implementation, each step is executed with care and precision.
-//     </p>
-//   </div>
-
-//   <div className="relative max-w-5xl mx-auto">
-//     <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-sky-200"></div>
-
-//     {[...processLeft, ...processRight].map((item, idx) => {
-//       const isLeft = idx % 2 === 0;
-//       return (
-//         <div
-//           key={idx}
-//           className={`relative mb-12 flex flex-col sm:flex-row items-center ${
-//             isLeft ? 'sm:justify-start' : 'sm:justify-end'
-//           }`}
-//         >
-//           <div className={`w-full sm:w-1/2 ${isLeft ? 'sm:pr-10' : 'sm:pl-10'}`}>
-//             <div className="bg-white border border-gray-200 p-6 rounded-2xl shadow-md hover:shadow-xl transition duration-300">
-//               <div className="flex items-center gap-3 mb-2">
-//                 <div className="text-white bg-sky-600 w-8 h-8 rounded-full flex items-center justify-center font-semibold">
-//                   {idx + 1}
-//                 </div>
-//                 <span className="text-sky-700 font-medium text-sm">Step {idx + 1}</span>
-//               </div>
-//               <p className="text-gray-700 text-base">{item}</p>
-//             </div>
-//           </div>
-//           <div className="hidden sm:block absolute left-1/2 transform -translate-x-1/2 bg-white border-4 border-sky-600 w-5 h-5 rounded-full z-10"></div>
-//         </div>
-//       );
-//     })}
-//   </div>
-// </section>
-
-
-
-//       {/* Why Choose Us */}
-//      <section className="px-4 sm:px-6 lg:px-20 py-20 bg-white border-t border-b">
-//   <h2 className="text-4xl font-bold text-center text-sky-700 mb-12 tracking-wide uppercase">Why Choose Us</h2>
-//   <div className="flex flex-wrap justify-center gap-8 max-w-6xl mx-auto">
-//     {chooseUs.map(({ icon, text }, idx) => (
-//       <div
-//         key={idx}
-//         className="w-full sm:w-[45%] lg:w-[30%] flex items-start gap-4 bg-gray-50 rounded-xl p-5 shadow hover:shadow-md hover:bg-sky-50 transition-all duration-300 cursor-pointer"
-//       >
-//         <div className="text-sky-600 flex-shrink-0">{icon}</div>
-//         <p className="text-sm sm:text-base">{text}</p>
-//       </div>
-//     ))}
-//   </div>
-// </section>
-
-
-//       {/* Our Project Verticals */}
-//       <section className="bg-gray-100 px-4 sm:px-6 lg:px-20 py-20">
-//         <h2 className="text-4xl font-bold text-center text-sky-700 mb-12 tracking-wide uppercase">Our Project Verticals</h2>
-//         <div className="flex flex-wrap justify-center gap-4 max-w-5xl mx-auto">
-//           {verticals.map((v, i) => (
-//             <span
-//               key={i}
-//               className="px-4 py-2 bg-white rounded-full border border-sky-600 text-sky-700 text-sm font-medium shadow hover:bg-sky-600 hover:text-white transition-all duration-300 cursor-pointer transform hover:scale-105"
-//             >
-//               {v}
-//             </span>
-//           ))}
-//         </div>
-//       </section>
-
-//       {/* Project Verticals with Content */}
-//       <section className="px-4 sm:px-6 lg:px-20 py-16 md:py-20">
-//         <div className="grid md:grid-cols-2 gap-12 items-center mb-20">
-//           <div>
-//             <h3 className="text-xl font-semibold mb-3">Work Place Lighting</h3>
-//             <p className="text-sm sm:text-base leading-relaxed">
-//               Lighting your office efficiently and effectively makes sound business sense. The ideal office lighting solution will have a considerable impact on the office environment and, in turn, your workforce.
-//               Good lighting helps us to see and to recognise hazards, reduce visual strain and discomfort. While poor lighting may affect workers' output, performance and health leading to less than desired levels of quality and service.
-//             </p>
-//           </div>
-//           <img src="/assets/verticle/v1.jpg" className="rounded-xl shadow-xl w-full" alt="Workplace Lighting" />
-//         </div>
-
-//         <div className="grid md:grid-cols-2 gap-12 items-center mb-20">
-//           <img src="/assets/verticle/v2.jpg" className="rounded-xl shadow-xl w-full" alt="Home Lighting" />
-//           <div>
-//             <h3 className="text-xl font-semibold mb-3">Home Lighting</h3>
-//             <p className="text-sm sm:text-base leading-relaxed">
-//               Light is one of the most overlooked and yet important elements of good interior design. Lighting is essential to create the mood and ambience of a living space. Professional lighting design can help illuminate a room, create a safe and comfortable environment, and strike a perfect balance between style, comfort, and practicality.
-//             </p>
-//           </div>
-//         </div>
-
-//         <div className="grid md:grid-cols-2 gap-12 items-center mb-20">
-//           <div>
-//             <h3 className="text-xl font-semibold mb-3">Hospital Lighting</h3>
-//             <p className="text-sm sm:text-base leading-relaxed">
-//               Lighting has a positive impact on patients and is one of the factors that contribute to a well-designed hospital facility. Great hospital lighting is both aesthetic and useful, making a positive and impactful statement.
-//               Lighting design has the potential to transform a space for the betterment of all.
-//             </p>
-//           </div>
-//           <img src="/assets/verticle/v3.jpg" className="rounded-xl shadow-xl w-full" alt="Hospital Lighting" />
-//         </div>
-
-//         <div className="grid md:grid-cols-2 gap-12 items-center mb-20">
-//           <img src="/assets/verticle/v5.jpg" className="rounded-xl shadow-xl w-full" alt="Hotel Lighting" />
-//           <div>
-//             <h3 className="text-xl font-semibold mb-3">Hotel Lighting</h3>
-//             <p className="text-sm sm:text-base leading-relaxed">
-//               Lighting is not something to take lightly when planning the design of a hotel room. It can make or break the ambiance, which in turn affects guest satisfaction. Whether cozy and warm or bright and luxurious, lighting defines the hotel's identity.
-//             </p>
-//           </div>
-//         </div>
-
-//         <div className="grid md:grid-cols-2 gap-12 items-center">
-//           <div>
-//             <h3 className="text-xl font-semibold mb-3">Facade Lighting</h3>
-//             <p className="text-sm sm:text-base leading-relaxed">
-//               The facade of a building—modern or historic—is key to first impressions. In the architectural world, facades have become an important showcase of branding, identity, and technology. Our lighting designs elevate that impression.
-//             </p>
-//           </div>
-//           <img src="/assets/verticle/v4.jpg" className="rounded-xl shadow-xl w-full" alt="Facade Lighting" />
-//         </div>
-//       </section>
-
-//       {/* Lighting and Human Health */}
-//       <section className="bg-gray-100 px-4 sm:px-6 lg:px-20 py-16 md:py-20">
-//         <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-sky-600 text-center mb-12">Lighting & Human Health</h2>
-//         <div className="grid md:grid-cols-2 gap-12 items-center">
-//           <img src="/assets/verticle/v6.jpg" className="rounded-xl shadow-xl w-full" alt="Health Lighting" />
-//           <p className="text-base sm:text-lg leading-relaxed">
-//             Light plays a crucial role in regulating our circadian rhythms, impacting sleep, mood, and productivity. Our smart lighting designs adapt throughout the day to support physical and mental wellbeing naturally.
-//           </p>
-//         </div>
-//         {/* <img src="/assets/verticle/v7.jpg" className="mt-12 mx-auto rounded-xl shadow-xl w-full md:w-3/4" alt="Circadian Rhythm" /> */}
-//       </section>
-
-//       {/* CTA Section */}
-//       <section className="px-4 sm:px-6 lg:px-20 py-16 md:py-20 text-center">
-//         <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-sky-600 mb-10">Let's Build Brilliance Together</h2>
-//         <p className="text-base sm:text-lg max-w-3xl mx-auto mb-8">
-//           Whether it's commercial, residential, or industrial – lighting design begins with purpose. 
-//         </p>
-//         <img src="/assets/verticle/v8.jpg" className="rounded-xl shadow-xl mx-auto" alt="CTA" />
-//       </section>
-
-//       {/* Footer */}
-      
-//     </div>
-//   );
-// }
-
 
 import React, { useEffect } from "react";
 import { CheckCircle, LayoutTemplate, Workflow, Star, Settings, Users } from "lucide-react";
@@ -311,8 +79,13 @@ export default function DevinkShowcasePage() {
       <header className="relative bg-cover bg-center bg-no-repeat text-white py-16 md:py-24 px-4 sm:px-6 lg:px-20 text-center" style={{ backgroundImage: "url(/assets/sample-5.jpg)" }}>
         <div className="bg-black/40 absolute inset-0 z-0"></div>
         <div className="relative z-10 max-w-4xl mx-auto">
-          <h1 className="text-3xl sm:text-4xl md:text-6xl font-extrabold tracking-wide" data-aos="fade-up">Lightning Solutions</h1>
-          <p className="mt-8 text-base sm:text-lg md:text-xl font-light" data-aos="fade-up" data-aos-delay="200">Engineering Elegance with Light</p>
+<h1 className="mt-6 text-3xl sm:text-4xl md:text-6xl font-extrabold tracking-wide" data-aos="fade-up">
+  Lightning Solutions
+</h1>
+<p className="mt-10 text-base sm:text-lg md:text-xl font-light" data-aos="fade-up" data-aos-delay="200">
+  Engineering Elegance with Light
+</p>
+
         </div>
       </header>
 
@@ -354,7 +127,7 @@ export default function DevinkShowcasePage() {
                       <div className="text-white bg-sky-600 w-8 h-8 rounded-full flex items-center justify-center font-semibold">
                         {idx + 1}
                       </div>
-                      <span className="text-sky-700 font-medium text-sm">Step {idx + 1}</span>
+                      {/* <span className="text-sky-700 font-medium text-sm"> {idx + 1}</span> */}
                     </div>
                     <p className="text-gray-700 text-base">{item}</p>
                   </div>

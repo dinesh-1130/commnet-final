@@ -164,7 +164,7 @@ const [mobileVerticlesOpen, setMobileVerticlesOpen] = useState(false);
   onMouseEnter={() => setActiveDropdown('verticles')}
   className="relative cursor-pointer"
 >
-  <span>Verticles</span>
+  <span>Verticals</span>
 </li>
           
           <li>

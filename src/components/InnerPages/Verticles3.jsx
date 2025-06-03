@@ -229,8 +229,13 @@ export default function RNCShowcasePage() {
       <header className="relative bg-cover bg-center bg-no-repeat text-white py-16 md:py-24 px-4 sm:px-6 lg:px-20 text-center" style={{ backgroundImage: "url(/assets/sample-5.jpg)" }} data-aos="fade-in">
         <div className="bg-black/40 absolute inset-0 z-0"></div>
         <div className="relative z-10 max-w-4xl mx-auto">
-          <h1 className="text-3xl sm:text-4xl md:text-6xl font-extrabold tracking-wide">Power Solutions</h1>
-          <p className="mt-8 text-base sm:text-lg md:text-xl font-light">Engineering Elegance with Power</p>
+         <h1 className="mt-6 text-3xl sm:text-4xl md:text-6xl font-extrabold tracking-wide">
+  Power Solutions
+</h1>
+<p className="mt-10 text-base sm:text-lg md:text-xl font-light">
+  Engineering Elegance with Power
+</p>
+
         </div>
       </header>
 
@@ -269,7 +274,7 @@ export default function RNCShowcasePage() {
                       <div className="text-white bg-sky-600 w-8 h-8 rounded-full flex items-center justify-center font-semibold">
                         {idx + 1}
                       </div>
-                      <span className="text-sky-700 font-medium text-sm">Step {idx + 1}</span>
+                      {/* <span className="text-sky-700 font-medium text-sm">Step {idx + 1}</span> */}
                     </div>
                     <p className="text-gray-700 text-base">{item}</p>
                   </div>

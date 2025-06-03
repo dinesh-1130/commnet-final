@@ -220,7 +220,7 @@ export default function DevinkShowcasePage() {
                       <div className="text-white bg-sky-600 w-8 h-8 rounded-full flex items-center justify-center font-semibold">
                         {idx + 1}
                       </div>
-                      <span className="text-sky-700 font-medium text-sm">Step {idx + 1}</span>
+                      {/* <span className="text-sky-700 font-medium text-sm">Step {idx + 1}</span> */}
                     </div>
                     <p className="text-gray-700 text-base">{item}</p>
                   </div>
