@@ -567,10 +567,10 @@ const verticles = [
   { icon: Globe2, label: "IoT Services", link: "/iotservices" },
   { icon: Code2, label: "Professional IT Services", link: "/professionalitservices" },
   { icon: ShieldHalf, label: "Cyber Security Services", link: "/cybersecurityservices" },
-  { icon: Plug, label: "Power Solutions", link: "/powersolutions" },
-  { icon: Bolt, label: "Lightning Solutions", link: "/lightning-solutions" },
-  { icon: Network, label: "Chainex", link: "/chainex" },
- { icon: LayoutTemplate , label: "Core Services", link: "/Verticles4" }
+    { icon: Plug , label: "Power Solutions", link: "/Verticles3" },
+  { icon: Bolt , label: "Lightning Solutions", link: "/Verticles" },
+  { icon:Network , label: "Chainex", link: "/Verticles2" },
+  { icon: LayoutTemplate , label: "Core Services", link: "/Verticles4" }
 
 ];
 
