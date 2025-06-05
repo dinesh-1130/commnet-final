@@ -478,21 +478,28 @@
 //     </footer>
 //   );
 // }
+
 import { useEffect, useState } from "react";
+
 import {
-  Server,
-  ShieldCheck,
-  Database,
-  Code2,
-  BatteryCharging,
-  MonitorSmartphone,
   LayoutTemplate,
   Laptop,
   Globe2,
-  Lock,
+  Code2,
   ShieldHalf,
-  ChevronDown,
+  BatteryCharging,
+  Bolt,
+   Server,
+  ShieldCheck,
+  Database,
+  MonitorSmartphone,
+  Plug,
+  Lock,
+ChevronDown,
+  Network
 } from "lucide-react";
+
+
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -513,19 +520,59 @@ export default function Footer() {
     }));
   };
 
-  const services = [
-    { icon: <Server size={16} />, label: "Enterprise Systems Group", link: "/enterprise-systems-group" },
-    { icon: <ShieldCheck size={16} />, label: "Information Security", link: "/informationsecurity" },
-    { icon: <Database size={16} />, label: "Infrastructure Systems Group", link: "/infrastructuresystemgroup" },
-    { icon: <Code2 size={16} />, label: "Professional IT Services", link: "/professionalitservices" },
-    { icon: <BatteryCharging size={16} />, label: "Power Solutions", link: "/powersolutions" },
-    { icon: <MonitorSmartphone size={16} />, label: "AV Solutions", link: "/avsolutions" },
-    { icon: <LayoutTemplate size={16} />, label: "Website Development", link: "/websitedevelopment" },
-    { icon: <Laptop size={16} />, label: "Software Development", link: "/softwaredevelopment" },
-    { icon: <Globe2 size={16} />, label: "IoT Services", link: "/iotservices" },
-    { icon: <Lock size={16} />, label: "Security Systems", link: "/securitysystems" },
-    { icon: <ShieldHalf size={16} />, label: "Cyber Security Services", link: "/cybersecurityservices" },
-  ];
+
+
+const services = [
+  {
+    icon: <Server size={16} />,
+    label: "Enterprise Systems ",
+    link: "/enterprise-systems-group",
+  },
+  {
+    icon: <ShieldCheck size={16} />,
+    label: "Information Security",
+    link: "/informationsecurity",
+  },
+  {
+    icon: <Database size={16} />,
+    label: "Infrastructure Systems ",
+    link: "/infrastructuresystemgroup",
+  },
+  {
+    icon: <MonitorSmartphone size={16} />,
+    label: "AV Solutions",
+    link: "/avsolutions",
+  },
+  {
+    icon: <Plug size={16} />,
+    label: "Power Solutions",
+    link: "/powersolutions",
+  },
+  {
+    icon: <Lock size={16} />,
+    label: "Security Systems",
+    link: "/securitysystems",
+  },
+];
+
+const verticles = [
+  { icon: LayoutTemplate, label: "Website Development", link: "/websitedevelopment" },
+  { icon: Laptop, label: "Software Development", link: "/softwaredevelopment" },
+  { icon: Globe2, label: "IoT Services", link: "/iotservices" },
+  { icon: Code2, label: "Professional IT Services", link: "/professionalitservices" },
+  { icon: ShieldHalf, label: "Cyber Security Services", link: "/cybersecurityservices" },
+  { icon: Plug, label: "Power Solutions", link: "/powersolutions" },
+  { icon: Bolt, label: "Lightning Solutions", link: "/lightning-solutions" },
+  { icon: Network, label: "Chainex", link: "/chainex" },
+ { icon: LayoutTemplate , label: "Core Services", link: "/Verticles4" }
+
+];
+
+
+
+
+
+
 
   return (
     <footer className="bg-sky-100 bg-cover bg-no-repeat bg-bottom font-['Lato'] text-gray-700 pt-16 overflow-hidden"
@@ -539,13 +586,43 @@ export default function Footer() {
             <p className="text-[17px] leading-relaxed">
               With more than 25 years of experience, 7 offices across the region - Commnet is a leading end-to-end digital solutions provider...
             </p>
+             <div className="flex items-center gap-4 mt-6">
+     <a
+  href="https://facebook.com"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="text-sky-700 hover:text-sky-900 text-2xl"
+>
+  <i className="fab fa-facebook-f"></i>
+</a>
+<a
+  href="https://instagram.com"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="text-sky-700 hover:text-sky-900 text-2xl"
+>
+  <i className="fab fa-instagram"></i>
+</a>
+<a
+  href="https://linkedin.com"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="text-sky-700 hover:text-sky-900 text-2xl"
+>
+  <i className="fab fa-linkedin-in"></i>
+</a>
+
+    </div>
+
           </div>
 
          {/* Center: Useful Links + Services + Social Media */}
-<div className="flex-1 flex justify-start gap-20 text-sm pl-6">
+<div className="flex-1 flex justify-start gap-20 text-sm pl-8">
   {/* Useful Links */}
   <div data-aos="fade-up">
-    <h4 className="text-sky-700 font-semibold text-lg mb-3">Useful Links</h4>
+    <h4 className="text-sky-700 font-semibold text-lg mb-3 whitespace-nowrap">
+      Useful Links
+    </h4>
     <ul className="space-y-3">
       <li><a href="/" className="hover:underline">Home</a></li>
       <li><a href="/aboutus" className="hover:underline">About Us</a></li>
@@ -554,38 +631,75 @@ export default function Footer() {
     </ul>
   </div>
 
+
+
   {/* Services */}
-  <div data-aos="fade-up" className="text-center">
-    <h4 className="text-sky-700 font-semibold text-lg mb-3 text-center mr-14">Our Services</h4>
-    <div className="grid grid-cols-2 gap-x-8 gap-y-3 text-left">
+ <div data-aos="fade-up" className="flex flex-col lg:flex-row justify-center gap-20 text-left pl-1">
+  {/* Our Services – single vertical column */}
+  <div className="w-full max-w-xs">
+    <h4 className="text-sky-700 font-semibold text-lg mb-4">Our Services</h4>
+    <div className="flex flex-col gap-4">
       {services.map((item, idx) => (
-        <a href={item.link} key={idx} className="flex items-center gap-2 hover:underline">
+        <a
+          href={item.link}
+          key={idx}
+          className="flex items-center gap-2 hover:underline"
+        >
           {item.icon}
           {item.label}
         </a>
       ))}
     </div>
   </div>
+<div className="w-full max-w-xl -ml-6">
+  <div className="flex flex-col items-center mb-4">
+    <h4 className="text-sky-700 font-semibold text-lg text-center">
+      Our Solutions
+    </h4>
+  </div>
 
-  {/* Social Media */}
-  <div data-aos="fade-up" className="flex flex-col items-start text-left">
-    <h4 className="text-sky-700 font-semibold text-lg mb-3">Social Media</h4>
-    <div className="space-y-3">
-      <a href="https://www.facebook.com" target="_blank" className="flex items-center gap-2 hover:underline">
-        <i className="fab fa-facebook-f text-sky-600 w-5"></i>Facebook
-      </a>
-      <a href="https://www.instagram.com" target="_blank" className="flex items-center gap-2 hover:underline">
-        <i className="fab fa-instagram text-sky-600 w-5"></i>Instagram
-      </a>
-      <a href="https://www.linkedin.com" target="_blank" className="flex items-center gap-2 hover:underline">
-        <i className="fab fa-linkedin-in text-sky-600 w-5"></i>LinkedIn
-      </a>
+  <div className="flex gap-16 justify-center">
+    {/* Left Column */}
+    <div className="flex flex-col gap-4">
+      {verticles.slice(0, 5).map((item, idx) => (
+        <a
+          key={idx}
+          href={item.link}
+          className="flex items-center gap-2 hover:underline whitespace-nowrap"
+        >
+          <span className="w-5 flex justify-center">{<item.icon size={16} />}</span>
+          <span>{item.label}</span>
+        </a>
+      ))}
+    </div>
+
+    {/* Right Column */}
+    <div className="flex flex-col gap-4">
+      {verticles.slice(5).map((item, idx) => (
+        <a
+          key={idx}
+          href={item.link}
+          className="flex items-center gap-2 hover:underline whitespace-nowrap"
+        >
+          <span className="w-5 flex justify-center">{<item.icon size={16} />}</span>
+          <span>{item.label}</span>
+        </a>
+      ))}
     </div>
   </div>
+</div>
+
+</div>
+
+  
     <div className="mt-4">
-           
-              <img src="/assets/sira-right.png" alt="Approved Badge" className="w-[80px] inline-block" />
-            </div>
+  <img 
+    src="/assets/sira.png" 
+    alt="Approved Badge" 
+    className="w-[165px] inline-block mx-auto md:mx-0 "
+  />
+</div>
+
 </div>
 </div>
           
@@ -634,6 +748,32 @@ export default function Footer() {
               </ul>
             )}
           </div>
+<div className="border-t border-gray-300 pt-4" data-aos="fade-up">
+  <button onClick={() => toggleSection("solutions")} className="w-full flex justify-between items-center py-3">
+    <span className="text-sky-700 font-semibold">Our Solutions</span>
+    <ChevronDown
+      className={`w-5 h-5 transition-transform ${
+        openSections.solutions ? "rotate-180" : ""
+      }`}
+    />
+  </button>
+
+  {openSections.solutions && (
+    <ul className="space-y-3 pl-2 mt-2">
+      {verticles.map((item, index) => (
+        <li key={index}>
+          <a
+            href={item.link}
+            className="flex items-center gap-2 hover:underline whitespace-nowrap"
+          >
+            <span className="w-5 flex justify-center">{<item.icon size={16} />}</span>
+            <span>{item.label}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  )}
+</div>
 
           {/* Social Media */}
           <div className="border-t border-gray-300 pt-6" data-aos="fade-up">

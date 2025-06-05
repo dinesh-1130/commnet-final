@@ -20,6 +20,9 @@ import {
   ChevronDown,
   FolderKanban,
   Users,
+  Plug,
+  Bolt,
+  Network,
   Building
 } from "lucide-react";
 import { FaFolderOpen } from "react-icons/fa";
@@ -67,13 +70,9 @@ const [mobileVerticlesOpen, setMobileVerticlesOpen] = useState(false);
       label: "Infrastructure Systems Group",
       link: "/infrastructuresystemgroup",
     },
-    {
-      icon: <Code2 />,
-      label: "Professional IT Services",
-      link: "/professionalitservices",
-    },
+    
     { 
-      icon: <BatteryCharging />, 
+      icon: <Plug />, 
       label: "Power Solutions", 
       link: "/powersolutions" 
     },
@@ -82,31 +81,13 @@ const [mobileVerticlesOpen, setMobileVerticlesOpen] = useState(false);
       label: "AV Solutions",
       link: "/avsolutions",
     },
-    {
-      icon: <LayoutTemplate />,
-      label: "Website Development",
-      link: "/websitedevelopment",
-    },
-    {
-      icon: <Laptop />,
-      label: "Software Development",
-      link: "/softwaredevelopment",
-    },
-    {
-      icon: <Globe2 />,
-      label: "IoT Services",
-      link: "/iotservices",
-    },
+   
     {
       icon: <Lock />,
       label: "Security Systems",
       link: "/securitysystems",
     },
-    {
-      icon: <ShieldHalf />,
-      label: "Cyber Security Services",
-      link: "/cybersecurityservices",
-    },
+  
    
   ];
 
@@ -122,6 +103,40 @@ const [mobileVerticlesOpen, setMobileVerticlesOpen] = useState(false);
       link: "/why-choose-us",
     },
   ];
+
+  const verticles = [
+
+   {
+      icon: <LayoutTemplate />,
+      label: "Website Development",
+      link: "/websitedevelopment",
+    },
+    {
+      icon: <Laptop />,
+      label: "Software Development",
+      link: "/softwaredevelopment",
+    },
+    {
+      icon: <Globe2 />,
+      label: "IoT Services",
+      link: "/iotservices",
+    },
+{
+      icon: <Code2 />,
+      label: "Professional IT Services",
+      link: "/professionalitservices",
+    },
+      {
+      icon: <ShieldHalf />,
+      label: "Cyber Security Services",
+      link: "/cybersecurityservices",
+    },
+      { icon: <Plug />, label: "Power Solutions", link: "/Verticles3" },
+  { icon: <Bolt />, label: "Lightning Solutions", link: "/Verticles" },
+  { icon: <Network />, label: "Chainex", link: "/Verticles2" },
+  { icon: <LayoutTemplate />, label: "Core Services", link: "/Verticles4" }
+
+];
 
   return (
     <div className="relative font-['Lato']" onMouseLeave={handleMouseLeaveNav}>
@@ -153,20 +168,22 @@ const [mobileVerticlesOpen, setMobileVerticlesOpen] = useState(false);
           >
             <span>About Us</span>
           </li>
+
           <li
             onMouseEnter={() => setActiveDropdown('services')}
             className="relative cursor-pointer"
           >
             <span>Services</span>
           </li>
-
-        <li
+          <li
   onMouseEnter={() => setActiveDropdown('verticles')}
   className="relative cursor-pointer"
 >
-  <span>Verticals</span>
+  <span>Solutions</span>
 </li>
-          
+
+
+   
           <li>
             <a href="/ourprojects1" onClick={() => setActiveDropdown(null)}>
               Projects
@@ -223,6 +240,31 @@ const [mobileVerticlesOpen, setMobileVerticlesOpen] = useState(false);
         </div>
       )}
 
+      {activeDropdown === 'verticles' && (
+  <div
+    className="hidden lg:grid fixed top-[65px] left-0 w-full z-40 px-12 py-12 bg-white text-black grid-cols-12 gap-6 shadow-lg"
+    data-aos="fade-down"
+  >
+    <div className="col-span-3 border-r pr-6">
+      {/* Left column content removed as per original */}
+    </div>
+    <div className="col-span-6 grid grid-cols-3 gap-4 px-6 border-r">
+      {verticles.map((item, index) => (
+        <NavLink
+          key={index}
+          to={item.link}
+          onClick={() => setActiveDropdown(null)}
+          className="flex items-center space-x-3 hover:text-sky-500 transition-colors duration-200"
+        >
+          <div className="text-black hover:text-sky-500 transition-colors duration-200">{item.icon}</div>
+          <div className="text-sm font-medium">{item.label}</div>
+        </NavLink>
+      ))}
+    </div>
+  </div>
+)}
+
+
       {/* Desktop About Us Dropdown - Now white background with black text */}
       {activeDropdown === 'about' && (
         <div
@@ -256,34 +298,6 @@ const [mobileVerticlesOpen, setMobileVerticlesOpen] = useState(false);
           </div>
         </div>
       )}
-{activeDropdown === 'verticles' && (
-  <div
-    className="hidden lg:grid fixed top-[65px] left-0 w-full z-40 px-12 py-12 bg-white text-black grid-cols-12 gap-6 shadow-lg"
-    data-aos="fade-down"
-  >
-    <div className="col-span-3 border-r pr-6" />
-    <div className="col-span-6 grid grid-cols-3 gap-6 px-6 border-r">
-     <NavLink
-  to="/Verticles"
-  onClick={() => setActiveDropdown(null)}
-  className="flex items-center space-x-3 hover:text-sky-500 transition-colors duration-200"
->
-  <Zap />
-  <span className="text-sm font-medium">Lightning Solutions</span>
-</NavLink>
-
-      <NavLink to="/Verticles3" onClick={() => setActiveDropdown(null)} className="flex items-center space-x-3 hover:text-sky-500 transition-colors duration-200">
-        <BatteryCharging />
-        <span className="text-sm font-medium">Power Solutions</span>
-      </NavLink>
-      <NavLink to="/Verticles2" onClick={() => setActiveDropdown(null)} className="flex items-center space-x-3 hover:text-sky-500 transition-colors duration-200">
-        <ShieldCheck />
-        <span className="text-sm font-medium">Chainex</span>
-      </NavLink>
-    </div>
-    <div className="col-span-3" />
-  </div>
-)}
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
@@ -365,35 +379,28 @@ const [mobileVerticlesOpen, setMobileVerticlesOpen] = useState(false);
   onClick={() => setMobileVerticlesOpen(!mobileVerticlesOpen)}
 >
   <div className="flex items-center justify-between">
-    <span>Verticles</span>
+    <span>Solutions</span>
     <ChevronDown className={`w-5 h-5 transition-transform ${mobileVerticlesOpen ? "rotate-180" : ""}`} />
   </div>
 </li>
 
 {mobileVerticlesOpen && (
   <ul className="ml-4 mt-2 space-y-3 text-sm font-normal">
-    <a
-  href="/Verticles"
-  onClick={() => setActiveDropdown(null)}
-  className="flex items-center space-x-3 hover:text-sky-500 transition-colors duration-200"
->
-  <Zap />
-  <span className="text-sm font-medium">Lightning Solutions</span>
-</a>
-    <li>
-      <a href="/Verticles3" onClick={() => setMobileMenuOpen(false)} className="flex items-center space-x-2">
-        <BatteryCharging />
-        <span>Power Solutions</span>
-      </a>
-    </li>
-    <li>
-      <a href="/Verticles2" onClick={() => setMobileMenuOpen(false)} className="flex items-center space-x-2">
-        <ShieldCheck />
-        <span>Chainex</span>
-      </a>
-    </li>
+    {verticles.map((item, index) => (
+      <li key={index}>
+        <a
+          href={item.link}
+          className="flex items-center space-x-2"
+          onClick={() => setMobileMenuOpen(false)}
+        >
+          <span>{item.icon}</span>
+          <span>{item.label}</span>
+        </a>
+      </li>
+    ))}
   </ul>
 )}
+
             <li>
               <a href="/ourprojects1" onClick={() => setMobileMenuOpen(false)}>
                 Projects
