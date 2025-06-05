@@ -69,7 +69,7 @@ export default function TechServicesShowcase() {
   
   const verticals = [
     "US Healthcare", "Insurance", "Banking & Finance", "Compliance", "E-commerce",
-    "Education", "Manufacturing", "Government", "Non-Profit Organizations"
+    , "Manufacturing"
   ];
 
   return (
