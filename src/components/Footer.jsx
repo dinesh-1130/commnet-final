@@ -505,20 +505,26 @@ import "aos/dist/aos.css";
 
 export default function Footer() {
   const [openSections, setOpenSections] = useState({
-    general: false,
-    solutions: false,
+  general: false,
+  services: false,
+  solutions: false,
+});
+
+useEffect(() => {
+  AOS.init({ duration: 800 });
+}, []);
+
+const toggleSection = (key) => {
+  setOpenSections((prev) => {
+    const isOpen = prev[key];
+    return {
+      general: false,
+      services: false,
+      solutions: false,
+      [key]: !isOpen,
+    };
   });
-
-  useEffect(() => {
-    AOS.init({ duration: 800 });
-  }, []);
-
-  const toggleSection = (key) => {
-    setOpenSections((prev) => ({
-      ...prev,
-      [key]: !prev[key],
-    }));
-  };
+};
 
 
 
@@ -731,11 +737,11 @@ const verticles = [
 
           {/* Services Accordion */}
           <div className="border-t border-gray-300 pt-4" data-aos="fade-up">
-            <button onClick={() => toggleSection("solutions")} className="w-full flex justify-between items-center py-3">
+            <button onClick={() => toggleSection("services")} className="w-full flex justify-between items-center py-3">
               <span className="text-sky-700 font-semibold">Our Services</span>
-              <ChevronDown className={`w-5 h-5 transition-transform ${openSections.solutions ? "rotate-180" : ""}`} />
+              <ChevronDown className={`w-5 h-5 transition-transform ${openSections.services ? "rotate-180" : ""}`} />
             </button>
-            {openSections.solutions && (
+            {openSections.services && (
               <ul className="space-y-3 pl-2 mt-2">
                 {services.map((item, index) => (
                   <li key={index}>
