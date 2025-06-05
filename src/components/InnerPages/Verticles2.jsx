@@ -190,7 +190,7 @@ export default function DevinkShowcasePage() {
         <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-sky-600 mb-6">About Us</h2>
         <img src="/assets/sample-1.jpg" className="rounded-xl w-full mb-8 shadow-xl" alt="About" />
         <p className="text-base sm:text-lg leading-relaxed max-w-3xl mx-auto">
-          Chainex, a flagship platform of Thinkinfinity Inc., is a global boutique product engineering firm at the forefront of deep-tech innovation and embedded product architecture. In strategic partnership with Commnet System Consulting, it blends domain expertise with next-gen engineering.
+          Chainex is a global boutique product engineering firm at the forefront of deep-tech innovation and embedded product architecture. In strategic partnership with Commnet System Consulting, it blends domain expertise with next-gen engineering.
         </p>
       </section>
 
