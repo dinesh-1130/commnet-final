@@ -43,7 +43,7 @@ import Verticles2 from "./components/InnerPages/Verticles2"
 import Verticles3 from "./components/InnerPages/Verticles3"
 
 import Verticles4 from "./components/InnerPages/Verticles4"
-
+import Datacenter from "./components/InnerPages/Datacenter"
 function Home() {
   return (
     <>
@@ -102,6 +102,7 @@ export default function App() {
            <Route path="/Verticles2" element={<Verticles2 />} />
             <Route path="/Verticles3" element={<Verticles3 />} />
              <Route path="/Verticles4" element={<Verticles4 />} />
+             <Route path="/Datacenter" element={<Datacenter />} />
         </Routes>
      
           <Footer />

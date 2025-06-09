@@ -49,18 +49,14 @@ export default function WhyChooseUs() {
   }, []);
 
   const team = [
-    { name: "John Smith", title: "CEO", image: "/assets/social-2.jpg" },
-    { name: "Anita Desai", title: "CTO", image: "/assets/profile-2.jpg" },
-    { name: "Ravi Patel", title: "COO", image: "/assets/profile-3.jpg" },
-    { name: "Emily Zhang", title: "CMO", image: "/assets/profile-4.jpg" },
-    { name: "Liam Thomas", title: "CFO", image: "/assets/profile-5.jpg" },
-    { name: "Priya Kumar", title: "VP, Strategy", image: "/assets/profile-1.jpg" },
-     { name: "John Smith", title: "CEO", image: "/assets/social-2.jpg" },
-    { name: "Anita Desai", title: "CTO", image: "/assets/profile-2.jpg" },
-    { name: "Ravi Patel", title: "COO", image: "/assets/profile-3.jpg" },
-    { name: "Emily Zhang", title: "CMO", image: "/assets/profile-4.jpg" },
-    { name: "Liam Thomas", title: "CFO", image: "/assets/profile-5.jpg" },
-    { name: "Priya Kumar", title: "VP, Strategy", image: "/assets/profile-1.jpg" },
+    { name: "Karthik", title: "CEO", image: "/assets/md-1.jpeg" },
+    { name: "Gopi ", title: "Project Director", image: "/assets/profile-4.jpg" },
+    { name: "Askar", title: "Business Development Manager", image: "/assets/profile-2.jpg" },
+
+    
+    { name: "Swathi", title: "Finance Manager", image: "/assets/profile-1.jpg" },
+        { name: "Ajay", title: "Key Account Manager", image: "/assets/profile-3.jpg" },
+   
   ];
 
   return (
@@ -86,7 +82,7 @@ export default function WhyChooseUs() {
         </div>
       </section>
 
-
+{/* 
 <section className="relative py-24  text-gray-800 overflow-hidden">
  
   <div className="max-w-7xl mx-auto px-6 relative z-10">
@@ -128,10 +124,10 @@ export default function WhyChooseUs() {
       </div>
     </div>
   </div>
-</section>
+</section> */}
 
 
-{/* <section className="relative py-10 text-gray-800 overflow-hidden">
+<section className="relative py-10 text-gray-800 overflow-hidden">
   <div className="max-w-7xl mx-auto px-6 relative z-10">
     <div className="text-center mb-10">
       <span className="inline-block py-1 px-3 rounded-full bg-red-100 text-red-600 text-xs font-semibold tracking-wider mb-4">
@@ -168,7 +164,7 @@ export default function WhyChooseUs() {
       </div>
     </div>
   </div>
-</section> */}
+</section>
 
 
 
@@ -424,8 +420,8 @@ export default function WhyChooseUs() {
                           className="w-full h-[250px] object-cover"
                         />
                         <div className="p-4">
-                          <h4 className="text-lg font-semibold text-red-600">{member.name}</h4>
-                          <p className="text-sm text-red-400">{member.title}</p>
+                          <h4 className="text-lg font-semibold text-sky-600">{member.name}</h4>
+                          <p className="text-sm text-red-600">{member.title}</p>
                         </div>
                       </div>
                     </SwiperSlide>

@@ -98,46 +98,46 @@ export default function DevinkShowcasePage() {
         </p>
       </section>
 
-      {/* Our Process */}
-      <section className="bg-gray-50 py-20 px-4 sm:px-10 lg:px-24">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-extrabold tracking-wide text-sky-800 uppercase" data-aos="fade-up">Our Process</h2>
-          <p className="mt-4 text-gray-500 max-w-2xl mx-auto text-base sm:text-lg" data-aos="fade-up" data-aos-delay="100">
-            From diagnostics to implementation, each step is executed with care and precision.
-          </p>
-        </div>
+   <section className="bg-gray-50 py-24 px-6 sm:px-10 lg:px-32 font-['Lato']">
+  <div className="text-center mb-16">
+    <h2 className="text-4xl font-extrabold tracking-tight text-gray-900 uppercase" data-aos="fade-up">
+      Our Process
+    </h2>
+    <p
+      className="mt-4 text-gray-600 max-w-xl mx-auto text-base sm:text-lg"
+      data-aos="fade-up"
+      data-aos-delay="100"
+    >
+      A calm, clear sequence of steps that shape results with consistency and care.
+    </p>
+  </div>
 
-        <div className="relative max-w-5xl mx-auto">
-          <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-sky-200"></div>
-
-          {[...processLeft, ...processRight].map((item, idx) => {
-            const isLeft = idx % 2 === 0;
-            return (
-              <div
-                key={idx}
-                className={`relative mb-12 flex flex-col sm:flex-row items-center ${
-                  isLeft ? 'sm:justify-start' : 'sm:justify-end'
-                }`}
-                data-aos="fade-up"
-                data-aos-delay={idx * 10}
-              >
-                <div className={`w-full sm:w-1/2 ${isLeft ? 'sm:pr-10' : 'sm:pl-10'}`}>
-                  <div className="bg-white border border-gray-200 p-6 rounded-2xl shadow-md hover:shadow-xl transition duration-300">
-                    <div className="flex items-center gap-3 mb-2">
-                      <div className="text-white bg-sky-600 w-8 h-8 rounded-full flex items-center justify-center font-semibold">
-                        {idx + 1}
-                      </div>
-                      {/* <span className="text-sky-700 font-medium text-sm"> {idx + 1}</span> */}
-                    </div>
-                    <p className="text-gray-700 text-base">{item}</p>
-                  </div>
-                </div>
-                <div className="hidden sm:block absolute left-1/2 transform -translate-x-1/2 bg-white border-4 border-sky-600 w-5 h-5 rounded-full z-10"></div>
-              </div>
-            );
-          })}
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 max-w-6xl mx-auto">
+    {[...processLeft, ...processRight].map((item, idx) => (
+      <div
+        key={idx}
+        className="bg-white border-t-4 border-sky-600 rounded-md shadow-sm p-6 hover:shadow-md transition-all"
+        data-aos="fade-up"
+        data-aos-delay={idx * 100}
+      >
+        <div className="flex items-center gap-3 mb-2">
+          <div className="bg-sky-600 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">
+            {idx + 1}
+          </div>
         </div>
-      </section>
+        <p className="text-gray-800 text-sm leading-relaxed">{item}</p>
+      </div>
+    ))}
+  </div>
+
+  <div className="mt-20 text-center">
+    <span className="inline-block bg-blue-100 text-blue-700 px-6 py-2 rounded-full text-sm font-medium shadow-sm">
+      {[...processLeft, ...processRight].length} Refined Steps – Thoughtfully Executed
+    </span>
+  </div>
+</section>
+
+
 
       {/* Why Choose Us */}
       <section className="px-4 sm:px-6 lg:px-20 py-20 bg-white border-t border-b">

@@ -23,7 +23,12 @@ import {
   Plug,
   Bolt,
   Network,
-  Building
+  Building,
+  Package,
+  Globe
+  
+  
+  
 } from "lucide-react";
 import { FaFolderOpen } from "react-icons/fa";
 import { Zap } from "lucide-react"; 
@@ -55,40 +60,46 @@ const [mobileVerticlesOpen, setMobileVerticlesOpen] = useState(false);
   };
 
   const services = [
+
     {
-      icon: <Server />,
+  icon: <Server />,
+  label: "Data Center",
+  link: "/Datacenter",
+},
+ 
+    {
+      icon: <Globe />,
       label: "Enterprise Systems Group",
       link: "/enterprise-systems-group",
     },
-    {
-      icon: <ShieldCheck />,
-      label: "Information Security",
-      link: "/informationsecurity",
-    },
-    {
+
+     {
       icon: <Database />,
       label: "Infrastructure Systems Group",
       link: "/infrastructuresystemgroup",
     },
-    
-    { 
-      icon: <Plug />, 
-      label: "Power Solutions", 
-      link: "/powersolutions" 
-    },
-    {
-      icon: <MonitorSmartphone />,
-      label: "AV Solutions",
-      link: "/avsolutions",
-    },
-   
-    {
+     {
       icon: <Lock />,
       label: "Security Systems",
       link: "/securitysystems",
     },
-  
+     {
+      icon: <MonitorSmartphone />,
+      label: "AV Solutions",
+      link: "/avsolutions",
+    },
+    
+    { 
+      icon: <Zap />, 
+      label: "Power Solutions", 
+      link: "/powersolutions" 
+    },
    
+    
+    
+   
+   
+    
   ];
 
   const aboutItems = [
@@ -105,37 +116,49 @@ const [mobileVerticlesOpen, setMobileVerticlesOpen] = useState(false);
   ];
 
   const verticles = [
-
-   {
-      icon: <LayoutTemplate />,
-      label: "Website Development",
-      link: "/websitedevelopment",
-    },
-    {
-      icon: <Laptop />,
-      label: "Software Development",
-      link: "/softwaredevelopment",
-    },
-    {
-      icon: <Globe2 />,
-      label: "IoT Services",
-      link: "/iotservices",
-    },
-{
-      icon: <Code2 />,
-      label: "Professional IT Services",
-      link: "/professionalitservices",
-    },
+ { icon: <Package />, label: "Chainex", link: "/Verticles2" },
+  { icon: <Plug />, label: "Power Solutions", link: "/Verticles3" },
       {
       icon: <ShieldHalf />,
       label: "Cyber Security Services",
       link: "/cybersecurityservices",
     },
-      { icon: <Plug />, label: "Power Solutions", link: "/Verticles3" },
-  { icon: <Bolt />, label: "Lightning Solutions", link: "/Verticles" },
-  { icon: <Network />, label: "Chainex", link: "/Verticles2" },
-  { icon: <LayoutTemplate />, label: "Core Services", link: "/Verticles4" }
+   {
+      icon: <Globe2 />,
+      label: "IoT Services",
+      link: "/iotservices",
+    },
+    { icon: <Bolt />, label: "Lightning Solutions", link: "/Verticles" },
+   
+    {
+      icon: <Laptop />,
+      label: "Software Development",
+      link: "/softwaredevelopment",
+    },
+   
+{
+      icon: <Code2 />,
+      label: "Professional IT Services",
+      link: "/professionalitservices",
+    },
+     
+      
 
+ 
+  // { icon: <LayoutTemplate />, label: "Core Services", link: "/Verticles4" },
+
+    {
+      icon: <ShieldCheck />,
+      label: "Information Security",
+      link: "/informationsecurity",
+    },
+     {
+      icon: <LayoutTemplate />,
+      label: "Website Development",
+      link: "/websitedevelopment",
+    },
+   
+ 
 ];
 
   return (
@@ -143,7 +166,7 @@ const [mobileVerticlesOpen, setMobileVerticlesOpen] = useState(false);
       {/* Navbar */}
       <nav
         data-aos="fade-down"
-        className={`fixed top-0 left-0 w-full z-50 px-6 py-4 flex justify-between items-center transition-all duration-300 animate-fadeDown ${
+        className={`fixed top-0 left-0 w-full z-50 px-6 py-4  flex justify-between items-center transition-all duration-300 animate-fadeDown ${
           scrolled
             ? "bg-white shadow-md text-black"
             : "bg-transparent text-white"
@@ -158,26 +181,26 @@ const [mobileVerticlesOpen, setMobileVerticlesOpen] = useState(false);
         </a>
 
         {/* Desktop Menu */}
-        <ul className="hidden lg:flex space-x-16 text-base font-medium text-inherit">
+        <ul className="hidden lg:flex space-x-16 text-lg font-medium text-inherit">
           <li>
-            <a href="/">Home</a>
+            <a href="/" className="hover:text-red-500 ">Home</a>
           </li>
           <li
             onMouseEnter={() => setActiveDropdown('about')}
-            className="relative cursor-pointer"
+            className="relative cursor-pointer hover:text-red-500  "
           >
             <span>About Us</span>
           </li>
 
           <li
             onMouseEnter={() => setActiveDropdown('services')}
-            className="relative cursor-pointer"
+            className="relative cursor-pointer hover:text-red-500 "
           >
             <span>Services</span>
           </li>
           <li
   onMouseEnter={() => setActiveDropdown('verticles')}
-  className="relative cursor-pointer"
+  className="relative cursor-pointer hover:text-red-500 "
 >
   <span>Solutions</span>
 </li>
@@ -185,12 +208,12 @@ const [mobileVerticlesOpen, setMobileVerticlesOpen] = useState(false);
 
    
           <li>
-            <a href="/ourprojects1" onClick={() => setActiveDropdown(null)}>
+            <a href="/ourprojects1 " className="hover:text-red-500 "  onClick={() => setActiveDropdown(null)}>
               Projects
             </a>
           </li>
           <li>
-            <a href="/contactus" onClick={() => setActiveDropdown(null)}>
+            <a href="/contactus" className="hover:text-red-500 " onClick={() => setActiveDropdown(null)}>
               Contact Us
             </a>
           </li>
