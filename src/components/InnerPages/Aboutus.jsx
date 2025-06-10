@@ -195,14 +195,14 @@ const OurJourney = () => {
   return (
     <section
       className="min-h-screen h-full bg-cover bg-no-repeat bg-bottom rounded-3xl flex flex-col bg-blend-saturation"
-      style={{ backgroundImage: "url('/assets/dubai-28.jpg')" }}
+      style={{ backgroundImage: "url('/assets/futuristic-computer-lab-equipment-row-generated-by-ai.jpg')" }}
     >
-      <div className="h-[200px] lg:h-[500px]"></div>
-      <div className="p-6 lg:p-12 flex flex-col lg:flex-row gap-8 h-full justify-between max-w-screen-xl mx-auto">
+      <div className="h-[200px] lg:h-[500px] "></div>
+      <div className="p-6 lg:p-12 flex flex-col lg:flex-row gap-8 h-full justify-between max-w-screen-xl mx-auto ">
         <header className="text-white">
-          <h1 className="text-4xl font-bold mb-4">Our Journey</h1>
-          <p className="text-lg lg:text-xl font-medium font-sans max-w-2xl text-justify">
-            Commnet started in the early 2000s as a two-member IT consulting firm and rapidly grew into a well-known company with offices in Dubai, India, Muscat, Qatar, and Singapore, employing hundreds today.
+          <h1 className="text-4xl font-bold mb-4 ">Our Journey</h1>
+          <p className="text font-medium font-sans max-w-2xl text-justify ">
+            Commnet started in the early 2000s as a two-member IT consulting firm and rapidly grew into a well-known company with offices in Dubai and India.
           </p>
         </header>
 
