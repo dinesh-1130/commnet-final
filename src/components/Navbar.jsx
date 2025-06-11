@@ -248,7 +248,7 @@ const [mobileVerticlesOpen, setMobileVerticlesOpen] = useState(false);
           </div>
           <div className="col-span-6 grid grid-cols-3 gap-4 px-6 border-r">
             {services.map((service, index) => (
-             <NavLink
+     <NavLink
   key={index}
   to={service.link}
   onClick={() => setActiveDropdown(null)}
@@ -257,10 +257,11 @@ const [mobileVerticlesOpen, setMobileVerticlesOpen] = useState(false);
   <div className="text-black hover:text-red-500 transition-colors duration-200">
     {service.icon}
   </div>
-  <div className="text-sm font-medium text-black hover:text-blue-600 transition-colors duration-200">
+  <div className="text-sm font-medium text-black hover:text-red-600 transition-colors duration-200">
     {service.label}
   </div>
 </NavLink>
+
             ))}
           </div>
           
@@ -286,7 +287,7 @@ const [mobileVerticlesOpen, setMobileVerticlesOpen] = useState(false);
   <div className="text-black hover:text-red-500 transition-colors duration-200">
     {item.icon}
   </div>
-  <div className="text-sm font-medium text-black hover:text-blue-600 transition-colors duration-200">
+  <div className="text-sm font-medium text-black hover:text-red-600 transition-colors duration-200">
     {item.label}
   </div>
 </NavLink>
