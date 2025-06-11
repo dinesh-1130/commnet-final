@@ -240,7 +240,7 @@ const [mobileVerticlesOpen, setMobileVerticlesOpen] = useState(false);
       {/* Desktop Services Dropdown - Now white background with black text */}
       {activeDropdown === 'services' && (
         <div
-          className="hidden lg:grid fixed top-[65px] left-0 w-full z-40 px-12 py-12 bg-white text-black grid-cols-12 gap-6 shadow-lg"
+          className="hidden lg:grid fixed top-[65px] left-0 w-full z-40 px-12 py-12 bg-white text-black grid-cols-12 gap-6 shadow-lg " 
           data-aos="fade-down"
         >
           <div className="col-span-3 border-r pr-6">
@@ -248,15 +248,19 @@ const [mobileVerticlesOpen, setMobileVerticlesOpen] = useState(false);
           </div>
           <div className="col-span-6 grid grid-cols-3 gap-4 px-6 border-r">
             {services.map((service, index) => (
-              <NavLink
-                key={index}
-                to={service.link}
-                onClick={() => setActiveDropdown(null)}
-                className="flex items-center space-x-3 hover:text-sky-500 transition-colors duration-200"
-              >
-                <div className="text-black hover:text-sky-500 transition-colors duration-200">{service.icon}</div>
-                <div className="text-sm font-medium">{service.label}</div>
-              </NavLink>
+             <NavLink
+  key={index}
+  to={service.link}
+  onClick={() => setActiveDropdown(null)}
+  className="flex items-center space-x-3"
+>
+  <div className="text-black hover:text-red-500 transition-colors duration-200">
+    {service.icon}
+  </div>
+  <div className="text-sm font-medium text-black hover:text-blue-600 transition-colors duration-200">
+    {service.label}
+  </div>
+</NavLink>
             ))}
           </div>
           
@@ -274,14 +278,19 @@ const [mobileVerticlesOpen, setMobileVerticlesOpen] = useState(false);
     <div className="col-span-6 grid grid-cols-3 gap-4 px-6 border-r">
       {verticles.map((item, index) => (
         <NavLink
-          key={index}
-          to={item.link}
-          onClick={() => setActiveDropdown(null)}
-          className="flex items-center space-x-3 hover:text-sky-500 transition-colors duration-200"
-        >
-          <div className="text-black hover:text-sky-500 transition-colors duration-200">{item.icon}</div>
-          <div className="text-sm font-medium">{item.label}</div>
-        </NavLink>
+  key={index}
+  to={item.link}
+  onClick={() => setActiveDropdown(null)}
+  className="flex items-center space-x-3 transition-colors duration-200"
+>
+  <div className="text-black hover:text-red-500 transition-colors duration-200">
+    {item.icon}
+  </div>
+  <div className="text-sm font-medium text-black hover:text-blue-600 transition-colors duration-200">
+    {item.label}
+  </div>
+</NavLink>
+
       ))}
     </div>
   </div>
@@ -304,9 +313,9 @@ const [mobileVerticlesOpen, setMobileVerticlesOpen] = useState(false);
                   key={index}
                   to={item.link}
                   onClick={() => setActiveDropdown(null)}
-                  className="flex items-center space-x-3 hover:text-sky-500 transition-colors duration-200"
+                  className="flex items-center space-x-3 hover:text-red-500 transition-colors duration-200"
                 >
-                  <div className="w-10 h-10 rounded-full bg-gray-100 text-black hover:bg-sky-500 hover:text-white flex items-center justify-center transition-all duration-200">
+                  <div className="w-10 h-10 rounded-full bg-gray-100 text-black hover:bg-red-500 hover:text-white flex items-center justify-center transition-all duration-200">
                     {item.icon}
                   </div>
                   <div>

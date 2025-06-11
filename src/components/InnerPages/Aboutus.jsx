@@ -5,6 +5,7 @@ import { Document, Page, pdfjs } from "react-pdf";
 import pdfFile from "/assets/Commnet.pdf";
 import flipSound from "/assets/flip.mp3";
 import { FaEye } from "react-icons/fa";
+
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   "pdfjs-dist/build/pdf.worker.min.mjs",
   import.meta.url
@@ -13,9 +14,11 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 function Aboutus() {
   const [showFlipbook, setShowFlipbook] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
+  const [showEmailModal, setShowEmailModal] = useState(false);
+  const [email, setEmail] = useState('');
+  const [actionType, setActionType] = useState(null);
 
   const handleDownload = () => {
-    // Create an anchor element and use it to download the PDF
     const link = document.createElement("a");
     link.href = pdfFile;
     link.download = "Commnet_Brochure.pdf";
@@ -24,6 +27,44 @@ function Aboutus() {
     document.body.removeChild(link);
   };
 
+const handleEmailSubmit = () => {
+  if (email.trim() === '') {
+    alert("Please enter a valid email address.");
+    return;
+  }
+
+  fetch("https://script.google.com/macros/s/AKfycbwoC0IQMwf0W_wghvxS7UNLFly0x0K5hEruku1q1TKTF3vVVxrS5XyPtNw569G13zEg/exec", {
+    method: "POST",
+     mode: "no-cors",
+    headers: {
+        "Content-Type": "application/x-form-urlencoded",
+      },
+    body: JSON.stringify({
+      type: "subscribe",
+      email: email
+    })
+  })
+    // .then((res) => res.json())
+    .then((res) => {
+      // if (res.status === "302") {
+        setShowEmailModal(false);
+        if (actionType === 'view') {
+          setShowFlipbook(true);
+        } else if (actionType === 'download') {
+          handleDownload();
+        }
+      // } else {
+      //   alert("Failed to save email. Please try again.");
+      // }
+      setEmail("")
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+      alert("Something went wrong while submitting the email.");
+    });
+};
+
+
   return (
     <>
       <div className="container mx-auto min-h-screen">
@@ -31,7 +72,7 @@ function Aboutus() {
           className="h-[70vh] bg-gray-50 bg-cover bg-no-repeat"
           style={{
             backgroundImage:
-              "url('https://img.freepik.com/free-vector/circuit-board-neon-background_23-2148335792.jpg?uid=R195687753&ga=GA1.1.1998257103.1744360169&semt=ais_hybrid&w=740')",
+              "url('https://img.freepik.com/free-vector/circuit-board-neon-background_23-2148335792.jpg')",
           }}
         >
           <div className="h-full flex justify-center items-center">
@@ -40,31 +81,40 @@ function Aboutus() {
             </div>
           </div>
         </div>
+
         <div className="min-h-screen flex max-w-[1440px] mx-auto py-[6.25em] flex-col gap-6 xl:gap-20 lg:px-10 px-5 font-sans">
           <AboutDetails />
           <MissionAndVision />
           <AboutCards />
           <OurJourney />
+
           <div className="w-full flex justify-center items-center gap-4">
             <div className="relative">
-             <button
-  onClick={() => setShowFlipbook(true)}
-  onMouseEnter={() => setShowTooltip(true)}
-  onMouseLeave={() => setShowTooltip(false)}
-  className="flex items-center gap-2 px-6 py-2 mt-6 bg-sky-600 text-white rounded-lg hover:bg-sky-700 transition"
->
-  <FaEye className="w-4 h-4" />
-  View Brochure
-</button>
+              <button
+                onClick={() => {
+                  setActionType("view");
+                  setShowEmailModal(true);
+                }}
+                onMouseEnter={() => setShowTooltip(true)}
+                onMouseLeave={() => setShowTooltip(false)}
+                className="flex items-center gap-2 px-6 py-2 mt-6 bg-sky-600 text-white rounded-lg hover:bg-sky-700 transition"
+              >
+                <FaEye className="w-4 h-4" />
+                View Brochure
+              </button>
               {showTooltip && (
                 <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 bg-black text-white text-sm rounded p-2 shadow-lg">
                   <p>Click and drag the corners to flip pages. Use mouse wheel to zoom.</p>
                 </div>
               )}
             </div>
+
             <button
-              onClick={handleDownload}
-              className="px-6 py-2 mt-6 bg-red-600 text-white rounded-lg  transition flex items-center gap-2"
+              onClick={() => {
+                setActionType("download");
+                setShowEmailModal(true);
+              }}
+              className="px-6 py-2 mt-6 bg-red-600 text-white rounded-lg transition flex items-center gap-2"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
@@ -76,6 +126,35 @@ function Aboutus() {
       </div>
 
       {showFlipbook && <PDFFlipbook onClose={() => setShowFlipbook(false)} />}
+
+      {showEmailModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-6 w-[90%] max-w-md shadow-lg">
+            <h2 className="text-xl font-semibold mb-4 text-center">Enter your Email</h2>
+            <input
+              type="email"
+              placeholder="you@example.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-sky-600 mb-4"
+            />
+            <div className="flex justify-between gap-4">
+              <button
+                onClick={() => setShowEmailModal(false)}
+                className="w-full py-2 bg-gray-300 text-gray-800 rounded hover:bg-gray-400"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleEmailSubmit}
+                className="w-full py-2 bg-sky-600 text-white rounded hover:bg-sky-700"
+              >
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </>
   );
 }
