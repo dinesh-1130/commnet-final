@@ -1,5 +1,3 @@
-
-
 // import { FaLinkedin } from "react-icons/fa6";
 // import { Swiper, SwiperSlide } from "swiper/react";
 // import "swiper/css";
@@ -129,7 +127,8 @@ const SocialMediaSection = () => {
       logo: "/assets/logo.png",
       time: "4mo",
       text: "🌟 2024 Achievement Spotlight 🌟 *We are thrilled to announce the incredible success of FIFA BEACH SOCCER WORLD CUP UAE 2024 DUBAI*",
-      image: "https://media.licdn.com/dms/image/v2/D4D22AQGrlCd4HYJHTQ/feedshare-shrink_1280/B4DZRAafbcGkAk-/0/1736247474520?e=1750291200&v=beta&t=mCKCqUYvyxzAOW8Pf6UgkZjRF8F2r51DD3sEAPyW-AI",
+      image:
+        "https://media.licdn.com/dms/image/v2/D4D22AQGrlCd4HYJHTQ/feedshare-shrink_1280/B4DZRAafbcGkAk-/0/1736247474520?e=1750291200&v=beta&t=mCKCqUYvyxzAOW8Pf6UgkZjRF8F2r51DD3sEAPyW-AI",
       likes: 11,
       link: "https://www.linkedin.com/posts/commnet-systems-consultancy_2024success-it-digitaltransformation-activity-7282349738669039617-sTa7",
     },
@@ -137,7 +136,8 @@ const SocialMediaSection = () => {
       logo: "/assets/logo.png",
       time: "4mo",
       text: "🎉 Biggest Achievement of 2024-FIFA BEACH SOCCER WORLD CUP UAE 2024 DUBAI 🎉 Askar Basha M N karthikeyan Narayanasamy Gopi Commnet swathi dumpala ",
-      image: "https://cdn.plus.fifa.com/images/public/cms/56/13/e3/87/5613e387-bd41-49eb-81f1-9345259a281a.jpg?width=1200&height=630",
+      image:
+        "https://cdn.plus.fifa.com/images/public/cms/56/13/e3/87/5613e387-bd41-49eb-81f1-9345259a281a.jpg?width=1200&height=630",
       likes: 9,
       link: "https://www.linkedin.com/posts/commnet-systems-consultancy_uae-activity-7282347829472227329-pI_G",
     },
@@ -147,7 +147,7 @@ const SocialMediaSection = () => {
     <section className="bg-sky-50 py-16 font-['Lato'] px-4 md:px-10">
       <div className="text-center mb-10" data-aos="fade-up">
         <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold font-['Plus Jakarta Sans'] text-sky-600 leading-snug">
-          <span className="text-sky-600 block sm:inline">Connect</span> and follow us on{" "}
+          <span className="text-sky-600 block sm:inline"></span> Follow us on{" "}
           <span className="text-sky-600 block sm:inline">social media</span>
         </h2>
       </div>
@@ -157,9 +157,9 @@ const SocialMediaSection = () => {
           spaceBetween={12}
           modules={[Pagination]}
           pagination={{ clickable: true }}
-          className="!pb-10 " 
+          className="!pb-10 "
           breakpoints={{
-            320: { slidesPerView: 1.2 }, 
+            320: { slidesPerView: 1.2 },
             640: { slidesPerView: 2 },
             1024: { slidesPerView: 3 },
           }}

@@ -1,24 +1,24 @@
-
-import { useRef, useEffect,useState} from "react";
+import { useRef, useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { Building2, Phone, Mail, MapPin } from "lucide-react";
 
-
-const id="AKfycbwdVNqotD8ohe3dtdIrUZuKVIayaPSmzTRMgf50Z8HZICtxrU_sI5gpueAs5_DcKCIO"
-const url="https://script.google.com/macros/s/AKfycbwdVNqotD8ohe3dtdIrUZuKVIayaPSmzTRMgf50Z8HZICtxrU_sI5gpueAs5_DcKCIO/exec"
+const id =
+  "AKfycbwxKWkVom2wc5UNEXiBrMYM8AOBgliMbRH3smX1nEycWueX7FPk7ENQioOAVQhisaw";
+const url =
+  "https://script.google.com/macros/s/AKfycbwxKWkVom2wc5UNEXiBrMYM8AOBgliMbRH3smX1nEycWueX7FPk7ENQioOAVQhisaw/exec";
 export default function ContactPage() {
   const contactRef = useRef(null);
 
   const [formdata, setFormdata] = useState({
-    name:"",
-    email:"",
-    phone:"",
-    country:"",
-    city:"",
-    message:"",
-     type:"contact",
-  })
+    name: "",
+    email: "",
+    phone: "",
+    country: "",
+    city: "",
+    message: "",
+    type: "contact",
+  });
   useEffect(() => {
     AOS.init({ duration: 800, once: true });
   }, []);
@@ -26,7 +26,7 @@ export default function ContactPage() {
   const scrollToContact = () => {
     contactRef.current.scrollIntoView({ behavior: "smooth" });
   };
-const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // Handle form submission logic here
 
@@ -41,17 +41,24 @@ const handleSubmit = async (e) => {
         name: formdata.name,
         email: formdata.email,
         phone: formdata.phone,
-        country:formdata.country,
-        city:formdata.city,
+        country: formdata.country,
+        city: formdata.city,
         message: formdata.message,
-        type:"contact",
+        type: "contact",
 
         token: id,
-     
       }),
     });
     console.log(response);
-    setFormdata({ name: "", email: "", phone: "",country:"",city:"",company:"", message: "" });
+    setFormdata({
+      name: "",
+      email: "",
+      phone: "",
+      country: "",
+      city: "",
+      company: "",
+      message: "",
+    });
   };
 
   return (
@@ -121,7 +128,8 @@ const handleSubmit = async (e) => {
                 <div>
                   <p className="font-semibold">Location</p>
                   <p>
-                    Office No.301, Centurion Star Building Tower A,<br />
+                    Office No.301, Centurion Star Building Tower A,
+                    <br />
                     Port Saeed Dubai, UAE, PO Box 117133
                   </p>
                 </div>
@@ -132,8 +140,10 @@ const handleSubmit = async (e) => {
           {/* Right Column (Form) */}
           <div className="w-full md:w-2/3" data-aos="fade-left">
             <h2 className="text-3xl font-bold mb-6">Enquire Now</h2>
-            <form className="grid grid-cols-1 md:grid-cols-2 gap-6"
-            onSubmit={handleSubmit}>
+            <form
+              className="grid grid-cols-1 md:grid-cols-2 gap-6"
+              onSubmit={handleSubmit}
+            >
               {/* <input
                 placeholder="Select Enquiry Subject"
                 className="border-b p-2 outline-none"
@@ -143,14 +153,26 @@ const handleSubmit = async (e) => {
                 placeholder="Your Name"
                 className="border-b p-2 outline-none"
                 value={formdata.name}
-                onChange={((e)=>setFormdata({...formdata,name:e.target.value}))}
+                onChange={(e) =>
+                  setFormdata({ ...formdata, name: e.target.value })
+                }
               />
-              <input placeholder="Phone" className="border-b p-2 outline-none"
-               value={formdata.phone}
-                onChange={((e)=>setFormdata({...formdata,phone:e.target.value}))} />
-              <input placeholder="Email" className="border-b p-2 outline-none" 
-               value={formdata.email}
-                onChange={((e)=>setFormdata({...formdata,email:e.target.value}))}/>
+              <input
+                placeholder="Phone"
+                className="border-b p-2 outline-none"
+                value={formdata.phone}
+                onChange={(e) =>
+                  setFormdata({ ...formdata, phone: e.target.value })
+                }
+              />
+              <input
+                placeholder="Email"
+                className="border-b p-2 outline-none"
+                value={formdata.email}
+                onChange={(e) =>
+                  setFormdata({ ...formdata, email: e.target.value })
+                }
+              />
               {/* <input
                 placeholder="Jb Title"
                 className="border-b p-2 outline-none"
@@ -158,8 +180,10 @@ const handleSubmit = async (e) => {
               <input
                 placeholder="Company Name"
                 className="border-b p-2 outline-none"
-                   value={formdata.company}
-                onChange={((e)=>setFormdata({...formdata,company:e.target.value}))}
+                value={formdata.company}
+                onChange={(e) =>
+                  setFormdata({ ...formdata, company: e.target.value })
+                }
               />
               {/* <input
                 placeholder="Industry"
@@ -168,18 +192,26 @@ const handleSubmit = async (e) => {
               <input
                 placeholder="Country"
                 className="border-b p-2 outline-none"
-                 value={formdata.country}
-                onChange={((e)=>setFormdata({...formdata,country:e.target.value}))}
+                value={formdata.country}
+                onChange={(e) =>
+                  setFormdata({ ...formdata, country: e.target.value })
+                }
               />
-              <input placeholder="City" className="border-b p-2 outline-none" 
-              value={formdata.city}
-                onChange={((e)=>setFormdata({...formdata,city:e.target.value}))}
+              <input
+                placeholder="City"
+                className="border-b p-2 outline-none"
+                value={formdata.city}
+                onChange={(e) =>
+                  setFormdata({ ...formdata, city: e.target.value })
+                }
               />
               <textarea
                 placeholder="Your Message"
                 className="border-b p-2 outline-none col-span-1 md:col-span-2"
-                 value={formdata.message}
-                onChange={((e)=>setFormdata({...formdata,message:e.target.value}))}
+                value={formdata.message}
+                onChange={(e) =>
+                  setFormdata({ ...formdata, message: e.target.value })
+                }
               ></textarea>
               <button
                 type="submit"

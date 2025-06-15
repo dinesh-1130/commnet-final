@@ -10,6 +10,10 @@ export default function OurProjectsPage() {
     }
   }, []);
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [currentPage]);
+
   const projects = [
     {
       id: 1,
@@ -23,10 +27,10 @@ export default function OurProjectsPage() {
       status: "Completed",
       scope: [
         "IT Structured Cabling - 13000 Points",
-        "CCTV/Security System - 2500 Camera"
+        "CCTV/Security System - 2500 Camera",
       ],
       value: "AED 15,17,820",
-      duration: "3 Years"
+      duration: "3 Years",
     },
     {
       id: 2,
@@ -41,10 +45,10 @@ export default function OurProjectsPage() {
       scope: [
         "DEWA Installation of CSOC Racks",
         "Network cabling for panel from CSOC Rack",
-        "Installation of cyber security devices, Testing and commissioning"
+        "Installation of cyber security devices, Testing and commissioning",
       ],
       value: "AED 26,23,250",
-      duration: "1 Year"
+      duration: "1 Year",
     },
     {
       id: 3,
@@ -59,10 +63,10 @@ export default function OurProjectsPage() {
       scope: [
         "Structured Cabling",
         "AV-BGM system installation",
-        "GRMS System Implemented - 820 Rooms"
+        "GRMS System Implemented - 820 Rooms",
       ],
       value: "AED 496,900",
-      duration: "14 Months"
+      duration: "14 Months",
     },
     {
       id: 4,
@@ -79,10 +83,10 @@ export default function OurProjectsPage() {
         "Security System: CCTV - 315 / ACS Doors - 15",
         "AV-PA system/BGM, IPTV/SMATV - 800 Rooms",
         "Network-Switching and Routing",
-        "WiFi and Telephony"
+        "WiFi and Telephony",
       ],
       value: "AED 40,07,700",
-      duration: "21 Months"
+      duration: "21 Months",
     },
     {
       id: 5,
@@ -99,10 +103,10 @@ export default function OurProjectsPage() {
         "CCTV for CID & Dubai Police",
         "Network – Switching, Routing and Firewall",
         "WiFi Solution & IPTV",
-        "IT Peripherals Laptops and Printers, System"
+        "IT Peripherals Laptops and Printers, System",
       ],
       value: "AED 25,25,750",
-      duration: "15 Days"
+      duration: "15 Days",
     },
     {
       id: 6,
@@ -117,10 +121,10 @@ export default function OurProjectsPage() {
       scope: [
         "Data Centre - Raised floor, Racks, Cabling, EMS, FM200, CCU, UPS",
         "Structured Cabling - UTP/FOC",
-        "CCTV and Access Control System"
+        "CCTV and Access Control System",
       ],
       value: "AED 320,499",
-      duration: "1 Month"
+      duration: "1 Month",
     },
     {
       id: 7,
@@ -136,10 +140,10 @@ export default function OurProjectsPage() {
         "Network Cabling FOC & UTP",
         "CCTV System as per SIRA Regulation-800",
         "Access Control System",
-        "WiFi and Data Centre Cabling"
+        "WiFi and Data Centre Cabling",
       ],
       value: "AED 33,90,399",
-      duration: "14 Months"
+      duration: "14 Months",
     },
     {
       id: 8,
@@ -156,10 +160,10 @@ export default function OurProjectsPage() {
         "Network Switching and Routing",
         "WIFI Implementation",
         "Storage implementation",
-        "SLA for network infrastructure"
+        "SLA for network infrastructure",
       ],
       value: "AED 70,16,110",
-      duration: "2017 to 2024 (8 Years)"
+      duration: "2017 to 2024 (8 Years)",
     },
     {
       id: 9,
@@ -174,10 +178,10 @@ export default function OurProjectsPage() {
       scope: [
         "Access control system for branches Dubai and Abu Dhabi",
         "UPS Installation",
-        "Network Cabling"
+        "Network Cabling",
       ],
       value: "AED 130,125",
-      duration: "14 Days"
+      duration: "14 Days",
     },
     {
       id: 10,
@@ -193,10 +197,10 @@ export default function OurProjectsPage() {
         "Installation of Network/server racks - 80 Nos",
         "Installation of containment and cable baskets",
         "Rack to Rack Cabling – UTP/FOC",
-        "Equipment/Device installation and support migration activity"
+        "Equipment/Device installation and support migration activity",
       ],
       value: "AED 470,850",
-      duration: "25 Days"
+      duration: "25 Days",
     },
     {
       id: 11,
@@ -211,10 +215,10 @@ export default function OurProjectsPage() {
       scope: [
         "WiFi Implementation",
         "IT Structured Cabling - UTP/FOC",
-        "Data centre maintenance, Service level agreement for network infrastructure"
+        "Data centre maintenance, Service level agreement for network infrastructure",
       ],
       value: "AED 557,890 / Year",
-      duration: "2022 to 2024 (2 Years)"
+      duration: "2022 to 2024 (2 Years)",
     },
     {
       id: 12,
@@ -228,10 +232,10 @@ export default function OurProjectsPage() {
       status: "Completed",
       scope: [
         "Data centre Refurbishment",
-        "Installation of Tier-1 Data centre"
+        "Installation of Tier-1 Data centre",
       ],
       value: "AED 415,900",
-      duration: "1 Month"
+      duration: "1 Month",
     },
     {
       id: 13,
@@ -245,10 +249,10 @@ export default function OurProjectsPage() {
       status: "Completed",
       scope: [
         "50 Megawatt temporary data container project – Mina Zayed – 120 Containers",
-        "125 Megawatt temporary data container project – Masdar City – 266 Containers"
+        "125 Megawatt temporary data container project – Masdar City – 266 Containers",
       ],
       value: "AED 850,000",
-      duration: "4 Months"
+      duration: "4 Months",
     },
     {
       id: 14,
@@ -260,13 +264,9 @@ export default function OurProjectsPage() {
         "Setup of IT Room and structured cabling for UTP/FOC including UPS AMC service for DAS Holding headquarters.",
       client: "DAS HOLDING",
       status: "Completed",
-      scope: [
-        "IT Room",
-        "Structured Cabling – UTP/FOC",
-        "UPS AMC"
-      ],
+      scope: ["IT Room", "Structured Cabling – UTP/FOC", "UPS AMC"],
       value: "AED 380,750",
-      duration: "20 Days"
+      duration: "20 Days",
     },
     {
       id: 15,
@@ -278,11 +278,9 @@ export default function OurProjectsPage() {
         "Structured cabling for DiveTech facilities under Winner Holistics at Abu Dhabi Ports area.",
       client: "Winner Holistics",
       status: "Completed",
-      scope: [
-        "IT Structured Cabling – UTP/FOC"
-      ],
+      scope: ["IT Structured Cabling – UTP/FOC"],
       value: "AED 370,450",
-      duration: "45 Days"
+      duration: "45 Days",
     },
     {
       id: 16,
@@ -294,11 +292,9 @@ export default function OurProjectsPage() {
         "Implementation of structured cabling works for a high-rise residential complex in Burjuman, managed by Alemco Engineering.",
       client: "ALEMCO ENGINEERING",
       status: "Completed",
-      scope: [
-        "IT Structured Cabling – UTP/FOC"
-      ],
+      scope: ["IT Structured Cabling – UTP/FOC"],
       value: "AED 399,956",
-      duration: "5 Months"
+      duration: "5 Months",
     },
     {
       id: 17,
@@ -310,12 +306,10 @@ export default function OurProjectsPage() {
         "Installation of CCTV systems as per ADMCC standards for Modern Baggage operations in Abu Dhabi Airport.",
       client: "Modern Baggage",
       status: "Completed",
-      scope: [
-        "CCTV Installation as per ADMCC"
-      ],
+      scope: ["CCTV Installation as per ADMCC"],
       value: "AED 75,590",
-      duration: "6 Days"
-    }
+      duration: "6 Days",
+    },
   ];
 
   const itemsPerPage = 10;
@@ -333,7 +327,7 @@ export default function OurProjectsPage() {
   const getPageNumbers = () => {
     const pageNumbers = [];
     const maxVisiblePages = 5;
-    
+
     if (totalPages <= maxVisiblePages) {
       // Show all pages if total pages is less than or equal to maxVisiblePages
       for (let i = 1; i <= totalPages; i++) {
@@ -347,14 +341,14 @@ export default function OurProjectsPage() {
           pageNumbers.push(i);
         }
         if (totalPages > 4) {
-          pageNumbers.push('...');
+          pageNumbers.push("...");
           pageNumbers.push(totalPages);
         }
       } else if (currentPage >= totalPages - 2) {
         // Show first page + ellipsis + last 3 pages
         pageNumbers.push(1);
         if (totalPages > 4) {
-          pageNumbers.push('...');
+          pageNumbers.push("...");
         }
         for (let i = totalPages - 2; i <= totalPages; i++) {
           pageNumbers.push(i);
@@ -362,15 +356,15 @@ export default function OurProjectsPage() {
       } else {
         // Show first page + ellipsis + current neighbors + ellipsis + last page
         pageNumbers.push(1);
-        pageNumbers.push('...');
+        pageNumbers.push("...");
         for (let i = currentPage - 1; i <= currentPage + 1; i++) {
           pageNumbers.push(i);
         }
-        pageNumbers.push('...');
+        pageNumbers.push("...");
         pageNumbers.push(totalPages);
       }
     }
-    
+
     return pageNumbers;
   };
 
@@ -400,8 +394,8 @@ export default function OurProjectsPage() {
             data-aos="fade-up"
             data-aos-delay="300"
           >
-            Delivering excellence in engineering and construction with innovative
-            solutions and uncompromising quality across the UAE.
+            Delivering excellence in engineering and construction with
+            innovative solutions and uncompromising quality across the UAE.
           </p>
         </div>
       </div>
@@ -459,15 +453,25 @@ export default function OurProjectsPage() {
                   : "bg-white text-sky-600 hover:bg-sky-50 border border-sky-200"
               }`}
             >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path>
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M15 19l-7-7 7-7"
+                ></path>
               </svg>
             </button>
 
             {/* Page Numbers */}
             {getPageNumbers().map((pageNum, index) => (
               <React.Fragment key={index}>
-                {pageNum === '...' ? (
+                {pageNum === "..." ? (
                   <span className="px-3 py-2 text-gray-500">...</span>
                 ) : (
                   <button
@@ -494,8 +498,18 @@ export default function OurProjectsPage() {
                   : "bg-white text-sky-600 hover:bg-sky-50 border border-sky-200"
               }`}
             >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M9 5l7 7-7 7"
+                ></path>
               </svg>
             </button>
           </div>
@@ -505,7 +519,10 @@ export default function OurProjectsPage() {
       {/* Project Details Modal */}
       {activeProject && (
         <div className="fixed inset-0 z-50 overflow-y-auto bg-black bg-opacity-75 flex items-center justify-center p-4">
-          <div className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-screen overflow-y-auto" data-aos="fade-up">
+          <div
+            className="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-screen overflow-y-auto"
+            data-aos="fade-up"
+          >
             <div className="relative">
               <img
                 src={activeProject.image}
@@ -543,9 +560,7 @@ export default function OurProjectsPage() {
               <h2 className="text-3xl font-bold text-gray-800 mb-4">
                 {activeProject.title}
               </h2>
-              <p className="text-gray-600 mb-6">
-                {activeProject.description}
-              </p>
+              <p className="text-gray-600 mb-6">{activeProject.description}</p>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                 <div>
@@ -650,9 +665,7 @@ export default function OurProjectsPage() {
                       </svg>
                     </div>
                     <div>
-                      <p className="text-sm text-gray-500">
-                        Project Value
-                      </p>
+                      <p className="text-sm text-gray-500">Project Value</p>
                       <p className="font-semibold text-gray-800">
                         {activeProject.value}
                       </p>

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import HTMLFlipBook from "react-pageflip";
 import { Document, Page, pdfjs } from "react-pdf";
@@ -15,7 +14,7 @@ function Aboutus() {
   const [showFlipbook, setShowFlipbook] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
   const [showEmailModal, setShowEmailModal] = useState(false);
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
   const [actionType, setActionType] = useState(null);
 
   const handleDownload = () => {
@@ -27,43 +26,45 @@ function Aboutus() {
     document.body.removeChild(link);
   };
 
-const handleEmailSubmit = () => {
-  if (email.trim() === '') {
-    alert("Please enter a valid email address.");
-    return;
-  }
+  const handleEmailSubmit = () => {
+    if (email.trim() === "") {
+      alert("Please enter a valid email address.");
+      return;
+    }
 
-  fetch("https://script.google.com/macros/s/AKfycbwoC0IQMwf0W_wghvxS7UNLFly0x0K5hEruku1q1TKTF3vVVxrS5XyPtNw569G13zEg/exec", {
-    method: "POST",
-     mode: "no-cors",
-    headers: {
-        "Content-Type": "application/x-form-urlencoded",
-      },
-    body: JSON.stringify({
-      type: "subscribe",
-      email: email
-    })
-  })
-    // .then((res) => res.json())
-    .then((res) => {
-      // if (res.status === "302") {
+    fetch(
+      "https://script.google.com/macros/s/AKfycbygYGKAmGvGVp1k32MzZB3cw4kWrh3vJDg-SR8MSwYSgKjaNK9J48QQrkmRjDDyQx8Z/exec",
+      {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/x-form-urlencoded",
+        },
+        body: JSON.stringify({
+          type: "subscribe",
+          email: email,
+        }),
+      }
+    )
+      // .then((res) => res.json())
+      .then((res) => {
+        // if (res.status === "302") {
         setShowEmailModal(false);
-        if (actionType === 'view') {
+        if (actionType === "view") {
           setShowFlipbook(true);
-        } else if (actionType === 'download') {
+        } else if (actionType === "download") {
           handleDownload();
         }
-      // } else {
-      //   alert("Failed to save email. Please try again.");
-      // }
-      setEmail("")
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-      alert("Something went wrong while submitting the email.");
-    });
-};
-
+        // } else {
+        //   alert("Failed to save email. Please try again.");
+        // }
+        setEmail("");
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("Something went wrong while submitting the email.");
+      });
+  };
 
   return (
     <>
@@ -104,7 +105,10 @@ const handleEmailSubmit = () => {
               </button>
               {showTooltip && (
                 <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 w-64 bg-black text-white text-sm rounded p-2 shadow-lg">
-                  <p>Click and drag the corners to flip pages. Use mouse wheel to zoom.</p>
+                  <p>
+                    Click and drag the corners to flip pages. Use mouse wheel to
+                    zoom.
+                  </p>
                 </div>
               )}
             </div>
@@ -116,8 +120,19 @@ const handleEmailSubmit = () => {
               }}
               className="px-6 py-2 mt-6 bg-red-600 text-white rounded-lg transition flex items-center gap-2"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                />
               </svg>
               Download Brochure
             </button>
@@ -130,7 +145,9 @@ const handleEmailSubmit = () => {
       {showEmailModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-6 w-[90%] max-w-md shadow-lg">
-            <h2 className="text-xl font-semibold mb-4 text-center">Enter your Email</h2>
+            <h2 className="text-xl font-semibold mb-4 text-center">
+              Enter your Email
+            </h2>
             <input
               type="email"
               placeholder="you@example.com"
@@ -162,19 +179,22 @@ const handleEmailSubmit = () => {
 export default Aboutus;
 
 const AboutDetails = () => (
-<div className="px-4 sm:px-6 lg:px-20 py-10 font-sans">
-  <div className="flex flex-col gap-6 text-left">
-    <h2 className="text-[1.8em] sm:text-[2em] lg:text-[2.5em] xl:text-[3em] font-semibold leading-[1.14]">
-      Who We Are
-    </h2>
-    <p className="text-base sm:text-lg lg:text-2xl tracking-tight text-justify text-gray-800">
-      At <span className="text-sky-600 font-semibold">Commnet</span>, we strive to deliver value through the combination of the right people, processes, technologies, and program management solutions. Our methods include applying domain expertise in specific industry segments, utilizing a highly-skilled workforce, leveraging a proven global delivery model, implementing structured and scalable quality processes and methodologies, and yet, staying cost-effective.
-    </p>
+  <div className="px-4 sm:px-6 lg:px-20 py-10 font-sans">
+    <div className="flex flex-col gap-6 text-left">
+      <h2 className="text-[1.8em] sm:text-[2em] lg:text-[2.5em] xl:text-[3em] font-semibold leading-[1.14]">
+        Who We Are
+      </h2>
+      <p className="text-base sm:text-lg lg:text-2xl tracking-tight text-justify text-gray-800">
+        At <span className="text-sky-600 font-semibold">Commnet</span>, we
+        strive to deliver value through the combination of the right people,
+        processes, technologies, and program management solutions. Our methods
+        include applying domain expertise in specific industry segments,
+        utilizing a highly-skilled workforce, leveraging a proven global
+        delivery model, implementing structured and scalable quality processes
+        and methodologies, and yet, staying cost-effective.
+      </p>
+    </div>
   </div>
-</div>
-
-
-
 );
 
 const MissionAndVision = () => (
@@ -183,13 +203,15 @@ const MissionAndVision = () => (
       <div className="p-8 flex flex-col gap-4 hover:bg-sky-100 rounded-2xl ">
         <h3 className="text-3xl font-bold">Our Mission</h3>
         <p className="text-xl font-medium">
-          Advancing our vision through strategy, <br /> innovation, and purposeful execution.
+          Advancing our vision through strategy, <br /> innovation, and
+          purposeful execution.
         </p>
       </div>
       <div className="p-8 flex flex-col gap-4 hover:bg-sky-100 rounded-2xl">
         <h3 className="text-3xl font-bold">Our Vision</h3>
         <p className="text-xl">
-          Inspiring lasting impact through purpose, <br /> passion, and unwavering commitment.
+          Inspiring lasting impact through purpose, <br /> passion, and
+          unwavering commitment.
         </p>
       </div>
     </div>
@@ -214,22 +236,26 @@ const AboutCards = () => {
     {
       id: "01",
       title: "Industry-Specific Expertise",
-      description: "Applying deep domain knowledge across various industry sectors.",
+      description:
+        "Applying deep domain knowledge across various industry sectors.",
     },
     {
       id: "02",
       title: "Skilled Workforce",
-      description: "Leveraging a team of highly experienced professionals to drive innovation.",
+      description:
+        "Leveraging a team of highly experienced professionals to drive innovation.",
     },
     {
       id: "03",
       title: "Structured & Scalable Processes",
-      description: "Implementing best practices to maintain efficiency and quality.",
+      description:
+        "Implementing best practices to maintain efficiency and quality.",
     },
     {
       id: "04",
       title: "Cost-Effective Solutions",
-      description: "Delivering high-value outcomes without compromising on quality.",
+      description:
+        "Delivering high-value outcomes without compromising on quality.",
     },
   ];
   return (
@@ -239,7 +265,9 @@ const AboutCards = () => {
           className="p-10 flex flex-col gap-8 hover:bg-blue-100 rounded-lg shadow-lg hover:shadow-blue-100"
           key={index}
         >
-          <p className="text-5xl font-sans font-bold text-neutral-800">{data.id}</p>
+          <p className="text-5xl font-sans font-bold text-neutral-800">
+            {data.id}
+          </p>
           <div className="flex flex-col gap-4">
             <p className="text-2xl font-semibold tracking-tight capitalize leading-7 mt-6 text-sky-600">
               {data.title}
@@ -261,7 +289,8 @@ const OurJourney = () => {
     },
     {
       count: "200%",
-      description: "Achieved rapid growth and became a well-known IT consulting firm.",
+      description:
+        "Achieved rapid growth and became a well-known IT consulting firm.",
       title: "Consistent Growth",
     },
     {
@@ -274,14 +303,19 @@ const OurJourney = () => {
   return (
     <section
       className="min-h-screen h-full bg-cover bg-no-repeat bg-bottom rounded-3xl flex flex-col bg-blend-saturation"
-      style={{ backgroundImage: "url('/assets/futuristic-computer-lab-equipment-row-generated-by-ai.jpg')" }}
+      style={{
+        backgroundImage:
+          "url('/assets/futuristic-computer-lab-equipment-row-generated-by-ai.jpg')",
+      }}
     >
       <div className="h-[200px] lg:h-[500px] "></div>
       <div className="p-6 lg:p-12 flex flex-col lg:flex-row gap-8 h-full justify-between max-w-screen-xl mx-auto ">
         <header className="text-white">
           <h1 className="text-4xl font-bold mb-4 ">Our Journey</h1>
           <p className="text font-medium font-sans max-w-2xl text-justify ">
-            Commnet started in the early 2000s as a two-member IT consulting firm and rapidly grew into a well-known company with offices in Dubai and India.
+            Commnet started in the early 2000s as a two-member IT consulting
+            firm and rapidly grew into a well-known company with offices in
+            Dubai and India.
           </p>
         </header>
 
@@ -304,7 +338,11 @@ const OurJourney = () => {
 
 const Pages = React.forwardRef((props, ref) => {
   return (
-    <div className="demoPage" ref={ref} style={{ margin: 0, padding: 0, boxSizing: "border-box", borderWidth: 0 }}>
+    <div
+      className="demoPage"
+      ref={ref}
+      style={{ margin: 0, padding: 0, boxSizing: "border-box", borderWidth: 0 }}
+    >
       <div style={{ margin: 0, padding: 0 }}>{props.children}</div>
     </div>
   );
@@ -321,12 +359,12 @@ function PDFFlipbook({ onClose }) {
   useEffect(() => {
     audioRef.current = new Audio(flipSound);
     audioRef.current.preload = "auto";
-    
+
     // Hide usage tip after 5 seconds
     const timer = setTimeout(() => {
       setShowUsageTip(false);
     }, 5000);
-    
+
     return () => {
       if (audioRef.current) {
         audioRef.current.pause();
@@ -369,7 +407,7 @@ function PDFFlipbook({ onClose }) {
             Close
           </button>
         </div>
-        
+
         <div className="w-screen h-screen flex justify-center items-center">
           {numPages > 0 && (
             <div className="w-full pl-8 my-auto flex items-center justify-center overflow-hidden">
