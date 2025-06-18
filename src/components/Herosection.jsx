@@ -1,7 +1,6 @@
 // import { useState, useRef } from "react";
 // import { ChevronLeft, ChevronRight } from "lucide-react";
 
-
 // export default function HeroSection() {
 //   const [activeCard, setActiveCard] = useState(0);
 //   const scrollRef = useRef(null);
@@ -62,8 +61,6 @@
 //         Scroll
 //       </button>
 
-     
-
 //       {/* Target for scroll button */}
 //       <div ref={scrollRef} className="h-[1px]" />
 //     </section>
@@ -93,22 +90,21 @@ export default function HeroSection() {
   return (
     <section className="relative w-screen h-screen overflow-hidden font-['Lato']">
       {/* Static Background Image */}
-     <video
-  autoPlay
-  muted
-  loop
-  playsInline
-  className="absolute top-0 left-0 w-full h-full object-cover z-0"
->
-  <source src="/assets/web.webm" type="video/webm" />
-  Your browser does not support the video tag.
-</video>
-
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute top-0 left-0 w-full h-full object-cover z-0"
+      >
+        <source src="/assets/web.webm" type="video/webm" />
+        Your browser does not support the video tag.
+      </video>
 
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/40 z-10" />
 
-{/*      
+      {/*      
       <div className="absolute top-80 right-16 z-20 text-white font-medium text-sm flex-col items-end space-y-2 leading-5 hidden md:flex">
         <a href="#">Home</a>
         <a href="#">About Us</a>
@@ -123,28 +119,28 @@ export default function HeroSection() {
       {/* Left-Aligned Heading */}
       <div className="relative z-20 flex top-20 flex-col items-start justify-center h-full px-6 text-white max-w-[90%] sm:max-w-[60%]">
         <h1 className="text-3xl sm:text-5xl font-bold leading-tight">
-          Integration Simplified Your Communication & Networking Partner
+          Integration Simplified Your{" "}
+          <span className="text-red-600">Communication </span>& Networking
+          Partner
         </h1>
         {/* <button className="mt-8 bg-white text-black font-semibold px-6 py-3 rounded-full hover:bg-gray-200 transition">
           Learn More
         </button> */}
 
         <a href="/aboutus">
-  <button className="mt-8 bg-white text-black font-semibold px-6 py-3 rounded-full hover:bg-gray-200 transition">
-    Learn More
-  </button>
-</a>
-
+          <button className="mt-8 bg-white text-black font-semibold px-6 py-3 rounded-full hover:bg-gray-200 transition">
+            Learn More
+          </button>
+        </a>
       </div>
 
-   {/* Scroll Button (hidden on mobile) */}
-{/* <button
+      {/* Scroll Button (hidden on mobile) */}
+      {/* <button
   onClick={scrollToNext}
   className="absolute left-10 bottom-10 z-30 w-14 h-14 bg-white rounded-full items-center justify-center font-medium hidden md:flex"
 >
   Scroll
 </button> */}
-
 
       {/* Target for scroll button */}
       <div ref={scrollRef} className="h-[1px]" />
