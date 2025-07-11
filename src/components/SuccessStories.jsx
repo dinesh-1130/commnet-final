@@ -128,7 +128,7 @@ const SocialMediaSection = () => {
       time: "4mo",
       text: "🌟 2024 Achievement Spotlight 🌟 *We are thrilled to announce the incredible success of FIFA BEACH SOCCER WORLD CUP UAE 2024 DUBAI*",
       image:
-        "https://media.licdn.com/dms/image/v2/D4D22AQGrlCd4HYJHTQ/feedshare-shrink_1280/B4DZRAafbcGkAk-/0/1736247474520?e=1750291200&v=beta&t=mCKCqUYvyxzAOW8Pf6UgkZjRF8F2r51DD3sEAPyW-AI",
+        "https://media.licdn.com/dms/image/v2/D4D22AQGrlCd4HYJHTQ/feedshare-shrink_800/B4DZRAafbcGkAg-/0/1736247474504?e=2147483647&v=beta&t=RSGPd4g0cKtENSubfRZUxbL95u6U0b2-xnThjTACTuM",
       likes: 11,
       link: "https://www.linkedin.com/posts/commnet-systems-consultancy_2024success-it-digitaltransformation-activity-7282349738669039617-sTa7",
     },
