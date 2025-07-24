@@ -104,7 +104,7 @@
 //       {/* Overlay */}
 //       <div className="absolute inset-0 bg-black/40 z-10" />
 
-//       {/*      
+//       {/*
 //       <div className="absolute top-80 right-16 z-20 text-white font-medium text-sm flex-col items-end space-y-2 leading-5 hidden md:flex">
 //         <a href="#">Home</a>
 //         <a href="#">About Us</a>
@@ -163,25 +163,20 @@ export default function HeroSection() {
     setIsIOS(/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream);
   }, []);
 
-  // Force video play on iOS after user interaction
+  // Handle video autoplay for iOS
   useEffect(() => {
-    const handleUserInteraction = () => {
-      if (videoRef.current && isIOS) {
-        videoRef.current.play().catch(console.error);
+    if (videoRef.current) {
+      // Try to play immediately
+      const playPromise = videoRef.current.play();
+
+      if (playPromise !== undefined) {
+        playPromise.catch((error) => {
+          // Autoplay was prevented, but don't show any notifications
+          console.log("Autoplay prevented:", error);
+        });
       }
-    };
-
-    // Add event listeners for user interaction
-    document.addEventListener("touchstart", handleUserInteraction, {
-      once: true,
-    });
-    document.addEventListener("click", handleUserInteraction, { once: true });
-
-    return () => {
-      document.removeEventListener("touchstart", handleUserInteraction);
-      document.removeEventListener("click", handleUserInteraction);
-    };
-  }, [isIOS]);
+    }
+  }, []);
 
   const handleNext = () => {
     setActiveCard((prev) => (prev + 1) % cards.length);
@@ -226,15 +221,14 @@ export default function HeroSection() {
         muted
         loop
         playsInline
-        webkit-playsinline="true" // iOS specific attribute
-        preload="metadata"
+        webkit-playsinline="true"
+        preload="auto"
         onLoadedData={handleVideoLoad}
         onError={handleVideoError}
         className={`absolute top-0 left-0 w-full h-full object-cover z-0 ${
           videoLoaded ? "opacity-100" : "opacity-0"
         } transition-opacity duration-1000`}
         style={{
-          // iOS specific styles
           WebkitTransform: "translateZ(0)",
           transform: "translateZ(0)",
         }}
@@ -248,13 +242,6 @@ export default function HeroSection() {
 
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/40 z-10" />
-
-      {/* iOS Notice (only shows on iOS if video isn't playing) */}
-      {isIOS && !videoLoaded && (
-        <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-30 bg-black/70 text-white px-4 py-2 rounded-lg text-sm">
-          Tap anywhere to enable video background
-        </div>
-      )}
 
       {/* Left-Aligned Heading */}
       <div className="relative z-20 flex top-20 flex-col items-start justify-center h-full px-6 text-white max-w-[90%] sm:max-w-[60%]">
