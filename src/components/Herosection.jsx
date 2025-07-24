@@ -199,7 +199,7 @@ import { useRef, useEffect, useState } from "react";
 export default function HeroSection() {
   const scrollRef = useRef(null);
   const videoRef = useRef(null);
-  const [videoLoaded, setVideoLoaded] = useState(false);
+  const [isIOS, setIsIOS] = useState(false);
 
   const scrollToNext = () => {
     if (scrollRef.current) {
@@ -208,48 +208,98 @@ export default function HeroSection() {
   };
 
   useEffect(() => {
+    // Detect iOS
+    const iOS =
+      /iPad|iPhone|iPod/.test(navigator.userAgent) ||
+      (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+    setIsIOS(iOS);
+
     const video = videoRef.current;
     if (!video) return;
 
-    // Force play on iOS devices
-    const handleCanPlay = () => {
-      setVideoLoaded(true);
-      // Small delay to ensure video is ready
-      setTimeout(() => {
-        video.play().catch((error) => {
-          console.log("Autoplay failed:", error);
-          // Fallback: try to play on first user interaction
-          const playOnInteraction = () => {
-            video.play().catch((e) => console.log("Manual play failed:", e));
+    // Multiple attempts to ensure autoplay works on iOS
+    const forcePlay = async () => {
+      try {
+        // Set video properties before playing
+        video.muted = true;
+        video.playsInline = true;
+        video.autoplay = true;
+        video.loop = true;
+
+        // Wait for video to be ready
+        if (video.readyState >= 2) {
+          await video.play();
+        } else {
+          video.addEventListener(
+            "canplay",
+            async () => {
+              try {
+                await video.play();
+              } catch (error) {
+                console.log("Canplay autoplay failed:", error);
+              }
+            },
+            { once: true }
+          );
+        }
+      } catch (error) {
+        console.log("Initial autoplay failed:", error);
+
+        // Fallback: try to play on any user interaction
+        const playOnInteraction = async () => {
+          try {
+            video.muted = true;
+            await video.play();
+            // Remove listeners after successful play
             document.removeEventListener("touchstart", playOnInteraction);
             document.removeEventListener("click", playOnInteraction);
-          };
-          document.addEventListener("touchstart", playOnInteraction);
-          document.addEventListener("click", playOnInteraction);
+            document.removeEventListener("scroll", playOnInteraction);
+          } catch (e) {
+            console.log("Interaction play failed:", e);
+          }
+        };
+
+        document.addEventListener("touchstart", playOnInteraction, {
+          passive: true,
         });
-      }, 100);
+        document.addEventListener("click", playOnInteraction);
+        document.addEventListener("scroll", playOnInteraction, {
+          passive: true,
+        });
+      }
     };
 
+    // Multiple load attempts
     const handleLoadedData = () => {
-      // Ensure video is ready to play
-      video.currentTime = 0;
+      forcePlay();
     };
 
-    video.addEventListener("canplay", handleCanPlay);
-    video.addEventListener("loadeddata", handleLoadedData);
+    const handleCanPlay = () => {
+      forcePlay();
+    };
 
-    // Force load the video
+    video.addEventListener("loadeddata", handleLoadedData);
+    video.addEventListener("canplay", handleCanPlay);
+
+    // Force load
     video.load();
 
+    // Additional iOS-specific attempt after a short delay
+    if (iOS) {
+      setTimeout(() => {
+        forcePlay();
+      }, 500);
+    }
+
     return () => {
-      video.removeEventListener("canplay", handleCanPlay);
       video.removeEventListener("loadeddata", handleLoadedData);
+      video.removeEventListener("canplay", handleCanPlay);
     };
   }, []);
 
   return (
     <section className="relative w-screen h-screen overflow-hidden font-['Lato']">
-      {/* Background Video – iOS Optimized */}
+      {/* Background Video – Maximum iOS Compatibility */}
       <video
         ref={videoRef}
         autoPlay
@@ -260,32 +310,41 @@ export default function HeroSection() {
         preload="auto"
         className="absolute top-0 left-0 w-full h-full object-cover z-0"
         style={{
-          // Additional iOS compatibility styles
           WebkitTransform: "translateZ(0)",
           transform: "translateZ(0)",
+          backfaceVisibility: "hidden",
+          WebkitBackfaceVisibility: "hidden",
         }}
-        // Additional iOS attributes
+        // All possible iOS compatibility attributes
         controls={false}
         disablePictureInPicture
-        disableRemotePlayback
+        disableRemotePlaybook
+        x5-video-player-type="h5"
+        x5-video-player-fullscreen="true"
+        x5-video-orientation="portraint"
+        // iOS specific attributes
+        webkit-playsinline="true"
+        playsinline="true"
+        // Ensure muted for autoplay
+        defaultMuted
+        volume={0}
       >
-        {/* MP4 first for better iOS compatibility */}
+        {/* 
+          IMPORTANT: Your video MUST meet these requirements:
+          - File size: Under 3MB (iOS limit for autoplay)
+          - Codec: H.264 baseline profile, level 3.0
+          - Container: MP4
+          - Audio: None or AAC-LC
+          - Resolution: Max 1920x1080
+          - Frame rate: 30fps or lower
+          - Pixel format: yuv420p
+          
+          Use this ffmpeg command to encode your video properly:
+          ffmpeg -i input.mp4 -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p -an -movflags +faststart -b:v 500k output.mp4
+        */}
         <source src="/assets/web-2.mp4" type="video/mp4" />
-        <source src="/assets/web-2.webm" type="video/webm" />
         Your browser does not support the video tag.
       </video>
-
-      {/* Fallback background image for cases where video fails */}
-      <div
-        className={`absolute top-0 left-0 w-full h-full bg-gray-900 z-0 transition-opacity duration-500 ${
-          videoLoaded ? "opacity-0" : "opacity-100"
-        }`}
-        style={{
-          backgroundImage: 'url("/assets/hero-fallback.jpg")',
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      />
 
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/40 z-10" />
@@ -303,6 +362,13 @@ export default function HeroSection() {
           </button>
         </a>
       </div>
+
+      {/* Debug info (remove in production) */}
+      {process.env.NODE_ENV === "development" && (
+        <div className="absolute top-4 right-4 z-30 bg-black/80 text-white p-2 text-xs rounded">
+          iOS: {isIOS ? "Yes" : "No"}
+        </div>
+      )}
 
       <div ref={scrollRef} className="h-[1px]" />
     </section>
