@@ -321,24 +321,37 @@ export default function HeroSection() {
 
   return (
     <section className="relative w-screen h-screen overflow-hidden font-['Lato']">
-      {/* Background Video - MP4 first for iOS */}
+      {/* Desktop Video */}
       <video
         autoPlay
         muted
         loop
         playsInline
         preload="auto"
-        className="absolute top-0 left-0 w-full h-full object-cover z-0"
+        className="absolute top-0 left-0 w-full h-full object-cover z-0 hidden md:block"
       >
-        <source src="/assets/web-3.mp4" type="video/mp4" />
+        <source src="/assets/web-2.mp4" type="video/mp4" />
         <source src="/assets/web-2.webm" type="video/webm" />
         Your browser does not support the video tag.
       </video>
 
-      {/* Dark overlay */}
+      {/* Mobile Video */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        className="absolute top-0 left-0 w-full h-full object-cover z-0 block md:hidden"
+      >
+        <source src="/assets/web-4.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+
+      {/* Overlay */}
       <div className="absolute inset-0 bg-black/40 z-10" />
 
-      {/* Foreground content */}
+      {/* Foreground Content */}
       <div className="relative z-20 flex flex-col items-start justify-center h-full px-6 text-white max-w-[90%] sm:max-w-[60%] top-20">
         <h1 className="text-3xl sm:text-5xl font-bold leading-tight">
           Integration Simplified Your{" "}
@@ -352,7 +365,7 @@ export default function HeroSection() {
         </a>
       </div>
 
-      {/* Scroll target */}
+      {/* Scroll Target */}
       <div ref={scrollRef} className="h-[1px]" />
     </section>
   );
