@@ -97,7 +97,7 @@
 //         playsInline
 //         className="absolute top-0 left-0 w-full h-full object-cover z-0"
 //       >
-//         <source src="/assets/web-2.mp4" type="video/webm" />
+//         <source src="/assets/web-2.mp4" type="video/mp4" />
 //         Your browser does not support the video tag.
 //       </video>
 
@@ -153,26 +153,47 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 export default function HeroSection() {
   const [activeCard, setActiveCard] = useState(0);
   const [isIOS, setIsIOS] = useState(false);
+  const [videoLoaded, setVideoLoaded] = useState(false);
   const scrollRef = useRef(null);
+  const videoRef = useRef(null);
 
+  // Detect iOS devices
   useEffect(() => {
-    // Detect iOS device
     const detectIOS = () => {
       return (
         /iPad|iPhone|iPod/.test(navigator.userAgent) ||
         (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)
       );
     };
-
     setIsIOS(detectIOS());
   }, []);
 
+  // Handle video load
+  const handleVideoLoad = () => {
+    setVideoLoaded(true);
+    if (videoRef.current && isIOS) {
+      // Force play on iOS after user interaction
+      videoRef.current
+        .play()
+        .catch((e) => console.log("Video autoplay prevented:", e));
+    }
+  };
+
+  // Handle user interaction to start video on iOS
+  const handleUserInteraction = () => {
+    if (videoRef.current && isIOS && !videoLoaded) {
+      videoRef.current
+        .play()
+        .catch((e) => console.log("Video play failed:", e));
+    }
+  };
+
   const handleNext = () => {
-    setActiveCard((prev) => (prev + 1) % cards.length);
+    setActiveCard((prev) => (prev + 1) % 3); // Assuming 3 cards
   };
 
   const handlePrev = () => {
-    setActiveCard((prev) => (prev - 1 + cards.length) % cards.length);
+    setActiveCard((prev) => (prev - 1 + 3) % 3);
   };
 
   const scrollToNext = () => {
@@ -182,31 +203,53 @@ export default function HeroSection() {
   };
 
   return (
-    <section className="relative w-screen h-screen overflow-hidden font-['Lato']">
-      {/* Background Video with iOS Detection */}
+    <section
+      className="relative w-screen h-screen overflow-hidden font-['Lato']"
+      onClick={handleUserInteraction}
+    >
+      {/* Video Background */}
       <video
+        ref={videoRef}
         autoPlay
         muted
         loop
         playsInline
+        preload="metadata"
         className="absolute top-0 left-0 w-full h-full object-cover z-0"
+        onLoadedData={handleVideoLoad}
+        onCanPlay={handleVideoLoad}
+        style={{
+          // iOS-specific optimizations
+          WebkitPlaysinline: true,
+          objectFit: "cover",
+        }}
       >
-        {/* iOS M4V Source */}
-        {isIOS && <source src="/assets/web-5.m4v" type="video/mp4" />}
-        {/* Non-iOS Sources */}
-        {!isIOS && (
-          <>
-            <source src="/assets/web-2.webm" type="video/webm" />
-            <source src="/assets/web-2.mp4" type="video/mp4" />
-          </>
-        )}
-        {/* Fallback for all devices */}
         <source src="/assets/web-2.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
+        {/* Fallback image for when video fails */}
       </video>
+
+      {/* Fallback background image for iOS or when video fails */}
+      {isIOS && !videoLoaded && (
+        <div
+          className="absolute top-0 left-0 w-full h-full z-0"
+          style={{
+            backgroundImage: "url('/assets/hero-fallback.jpg')", // Add a fallback image
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+          }}
+        />
+      )}
 
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/40 z-10" />
+
+      {/* iOS Video Play Hint (shows briefly on iOS) */}
+      {isIOS && !videoLoaded && (
+        <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-30 bg-black/70 text-white px-4 py-2 rounded-full text-sm">
+          Tap to play video
+        </div>
+      )}
 
       {/* Left-Aligned Heading */}
       <div className="relative z-20 flex top-20 flex-col items-start justify-center h-full px-6 text-white max-w-[90%] sm:max-w-[60%]">
