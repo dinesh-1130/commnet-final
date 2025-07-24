@@ -147,20 +147,10 @@
 //     </section>
 //   );
 // }
-import { useState, useRef } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useRef } from "react";
 
 export default function HeroSection() {
-  const [activeCard, setActiveCard] = useState(0);
   const scrollRef = useRef(null);
-
-  const handleNext = () => {
-    setActiveCard((prev) => (prev + 1) % cards.length);
-  };
-
-  const handlePrev = () => {
-    setActiveCard((prev) => (prev - 1 + cards.length) % cards.length);
-  };
 
   const scrollToNext = () => {
     if (scrollRef.current) {
@@ -170,7 +160,7 @@ export default function HeroSection() {
 
   return (
     <section className="relative w-screen h-screen overflow-hidden font-['Lato']">
-      {/* Background Video */}
+      {/* Background Video – iOS Friendly */}
       <video
         autoPlay
         muted
@@ -183,7 +173,7 @@ export default function HeroSection() {
         Your browser does not support the video tag.
       </video>
 
-      {/* Dark Overlay */}
+      {/* Overlay */}
       <div className="absolute inset-0 bg-black/40 z-10" />
 
       {/* Content */}
@@ -193,7 +183,6 @@ export default function HeroSection() {
           <span className="text-red-600">Communication </span>& Networking
           Partner
         </h1>
-
         <a href="/aboutus">
           <button className="mt-8 bg-white text-black font-semibold px-6 py-3 rounded-full hover:bg-gray-200 transition">
             Learn More
@@ -201,7 +190,6 @@ export default function HeroSection() {
         </a>
       </div>
 
-      {/* Scroll Target (optional) */}
       <div ref={scrollRef} className="h-[1px]" />
     </section>
   );
