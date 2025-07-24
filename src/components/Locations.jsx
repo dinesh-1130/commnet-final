@@ -509,7 +509,7 @@ const locations = [
       "Office No.301, Centurion Star Building, Tower A, Port Saeed Dubai, UAE, PO Box 117133",
     lat: 25.251729,
     lon: 55.333953,
-    phone: "+971 4 123 4567",
+    phone: "+971 4 - 295 5299",
     email: "info@commnetsysconsult.com",
     hours: "Monday - Friday: 9:00 AM - 6:00 PM",
     timezone: "Local Time (GMT+4)",

@@ -106,14 +106,14 @@ export default function ContactPage() {
                 <Building2 className="text-sky-600 mt-1" />
                 <div>
                   <p className="font-semibold">Global Head Office</p>
-                  <p>Commnet System Consultancy LLC</p>
+                  <p>Commnet Systems Consultancy LLC</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
                 <Phone className="text-sky-600 mt-1" />
                 <div>
                   <p className="font-semibold">Phone</p>
-                  <p>+971 4 295 5299</p>
+                  <p>+971 4-295 5299</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">

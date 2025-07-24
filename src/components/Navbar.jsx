@@ -1132,7 +1132,7 @@ export default function Navbar() {
       >
         <a href="/">
           <img
-            src="/assets/logo-newone.png"
+            src="/assets/logo.png"
             alt="COMMNET Logo"
             className="h-14 w-auto"
           />
