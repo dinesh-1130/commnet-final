@@ -383,24 +383,10 @@ import { useState, useRef, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function HeroSection() {
+  // State is no longer needed to track video playback, but can be kept for other UI elements if necessary.
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
   const scrollRef = useRef(null);
   const videoRef = useRef(null);
-
-  // Detect mobile devices to enable click-to-play fallback
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(
-        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-          navigator.userAgent
-        )
-      );
-    };
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
 
   // Set up the video to autoplay on all devices
   useEffect(() => {
@@ -416,8 +402,7 @@ export default function HeroSection() {
             setIsVideoPlaying(true);
           })
           .catch((error) => {
-            // Autoplay was prevented. This is expected on some mobile browsers
-            // or in Low Power Mode. The user can still click to play.
+            // Autoplay was prevented by the browser.
             setIsVideoPlaying(false);
             console.log("Autoplay blocked by browser:", error);
           });
@@ -438,24 +423,10 @@ export default function HeroSection() {
     }
   }, []); // The empty dependency array ensures this runs only once on mount.
 
-  // This function is the fallback for mobile devices if autoplay fails.
-  const handleVideoClick = () => {
-    const video = videoRef.current;
-    if (video && video.paused) {
-      video.play().catch((error) => {
-        console.log("Video play failed on click:", error);
-      });
-    }
-  };
-
   return (
     <section className="relative w-screen h-screen overflow-hidden font-['Lato']">
-      {/* Video Container with Click Handler for Mobile */}
-      <div
-        className="absolute top-0 left-0 w-full h-full z-0"
-        onClick={isMobile ? handleVideoClick : undefined}
-        style={{ cursor: isMobile && !isVideoPlaying ? "pointer" : "default" }}
-      >
+      {/* Video Container */}
+      <div className="absolute top-0 left-0 w-full h-full z-0">
         <video
           ref={videoRef}
           muted
@@ -472,21 +443,6 @@ export default function HeroSection() {
           <source src="/assets/web-6.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
-
-        {/* Play Icon Overlay - shows only if video isn't playing on mobile */}
-        {isMobile && !isVideoPlaying && (
-          <div className="absolute inset-0 flex items-center justify-center z-10">
-            <div className="w-20 h-20 bg-black bg-opacity-50 rounded-full flex items-center justify-center">
-              <svg
-                className="w-10 h-10 text-white"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path d="M8 5v14l11-7z" />
-              </svg>
-            </div>
-          </div>
-        )}
       </div>
 
       {/* Overlay */}
