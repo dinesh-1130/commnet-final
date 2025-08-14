@@ -321,10 +321,7 @@
 
 //       // Cleanup
 //       return () => {
-//         document.removeEventListener(
-//           "visibilitychange",
-//           handleVisibilityChange
-//         );
+//         document.removeEventListener("visibilitychange", handleVisibilityChange);
 //       };
 //     }
 //   }, []);
@@ -381,31 +378,17 @@
 //     </section>
 //   );
 // }
+
 import { useState, useRef, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function HeroSection() {
-  const [activeCard, setActiveCard] = useState(0);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const scrollRef = useRef(null);
   const videoRef = useRef(null);
 
-  const handleNext = () => {
-    setActiveCard((prev) => (prev + 1) % cards.length);
-  };
-
-  const handlePrev = () => {
-    setActiveCard((prev) => (prev - 1 + cards.length) % cards.length);
-  };
-
-  const scrollToNext = () => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
-  // Detect mobile devices
+  // Detect mobile devices to enable click-to-play fallback
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(
@@ -419,109 +402,58 @@ export default function HeroSection() {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  // Handle video interaction for mobile
-  const handleVideoClick = async () => {
-    const video = videoRef.current;
-    if (video && !isVideoPlaying) {
-      try {
-        video.muted = true;
-        await video.play();
-        setIsVideoPlaying(true);
-      } catch (error) {
-        console.log("Video play failed:", error);
-      }
-    }
-  };
-
-  // Enhanced video setup
+  // Set up the video to autoplay on all devices
   useEffect(() => {
     const video = videoRef.current;
     if (video) {
-      // Set all necessary attributes
-      video.setAttribute("webkit-playsinline", "true");
-      video.setAttribute("playsinline", "true");
-      video.setAttribute("x-webkit-airplay", "allow");
-      video.muted = true;
-      video.defaultMuted = true;
-      video.loop = true;
-      video.preload = "metadata";
-      video.disablePictureInPicture = true;
+      // The .play() method returns a promise. We'll try to play and catch errors.
+      const playPromise = video.play();
 
-      // Remove controls completely
-      video.controls = false;
-      video.removeAttribute("controls");
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            // Autoplay started successfully.
+            setIsVideoPlaying(true);
+          })
+          .catch((error) => {
+            // Autoplay was prevented. This is expected on some mobile browsers
+            // or in Low Power Mode. The user can still click to play.
+            setIsVideoPlaying(false);
+            console.log("Autoplay blocked by browser:", error);
+          });
+      }
 
-      const attemptAutoplay = async () => {
-        try {
-          await video.play();
-          setIsVideoPlaying(true);
-          console.log("Video autoplaying successfully");
-        } catch (error) {
-          console.log("Autoplay blocked:", error);
-          setIsVideoPlaying(false);
-        }
-      };
+      // Handlers to keep the state in sync with the video's status
+      const onPlay = () => setIsVideoPlaying(true);
+      const onPause = () => setIsVideoPlaying(false);
 
-      // Event listeners
-      const onLoadedMetadata = () => {
-        if (!isMobile) {
-          attemptAutoplay();
-        }
-      };
-
-      const onCanPlay = () => {
-        if (!isMobile) {
-          attemptAutoplay();
-        }
-      };
-
-      const onPlay = () => {
-        setIsVideoPlaying(true);
-      };
-
-      const onPause = () => {
-        setIsVideoPlaying(false);
-      };
-
-      video.addEventListener("loadedmetadata", onLoadedMetadata);
-      video.addEventListener("canplay", onCanPlay);
       video.addEventListener("play", onPlay);
       video.addEventListener("pause", onPause);
 
-      // For desktop, try to play immediately
-      if (!isMobile && video.readyState >= 2) {
-        attemptAutoplay();
-      }
-
-      // Handle visibility changes
-      const handleVisibilityChange = () => {
-        if (!document.hidden && isVideoPlaying && video.paused) {
-          video.play().catch(console.log);
-        }
-      };
-
-      document.addEventListener("visibilitychange", handleVisibilityChange);
-
-      // Cleanup
+      // Cleanup event listeners when the component unmounts
       return () => {
-        video.removeEventListener("loadedmetadata", onLoadedMetadata);
-        video.removeEventListener("canplay", onCanPlay);
         video.removeEventListener("play", onPlay);
         video.removeEventListener("pause", onPause);
-        document.removeEventListener(
-          "visibilitychange",
-          handleVisibilityChange
-        );
       };
     }
-  }, [isMobile, isVideoPlaying]);
+  }, []); // The empty dependency array ensures this runs only once on mount.
+
+  // This function is the fallback for mobile devices if autoplay fails.
+  const handleVideoClick = () => {
+    const video = videoRef.current;
+    if (video && video.paused) {
+      video.play().catch((error) => {
+        console.log("Video play failed on click:", error);
+      });
+    }
+  };
 
   return (
     <section className="relative w-screen h-screen overflow-hidden font-['Lato']">
       {/* Video Container with Click Handler for Mobile */}
       <div
         className="absolute top-0 left-0 w-full h-full z-0"
-        onClick={isMobile && !isVideoPlaying ? handleVideoClick : undefined}
+        onClick={isMobile ? handleVideoClick : undefined}
         style={{ cursor: isMobile && !isVideoPlaying ? "pointer" : "default" }}
       >
         <video
@@ -529,20 +461,32 @@ export default function HeroSection() {
           muted
           loop
           playsInline
+          // Non-standard attributes for full compatibility
           webkit-playsinline="true"
           x-webkit-airplay="allow"
-          preload="metadata"
+          preload="auto"
           disablePictureInPicture
           className="w-full h-full object-cover"
-          style={{
-            objectFit: "cover",
-            width: "100%",
-            height: "100%",
-          }}
-          onContextMenu={(e) => e.preventDefault()}
+          onContextMenu={(e) => e.preventDefault()} // Disables right-click menu
         >
           <source src="/assets/web-6.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
         </video>
+
+        {/* Play Icon Overlay - shows only if video isn't playing on mobile */}
+        {isMobile && !isVideoPlaying && (
+          <div className="absolute inset-0 flex items-center justify-center z-10">
+            <div className="w-20 h-20 bg-black bg-opacity-50 rounded-full flex items-center justify-center">
+              <svg
+                className="w-10 h-10 text-white"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Overlay */}
