@@ -87,49 +87,18 @@
 //     </section>
 //   );
 // }
-import { useState, useRef, useEffect } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useRef, useEffect } from "react";
 
 export default function HeroSection() {
   const videoRef = useRef(null);
-  // State for tracking playback isn't strictly necessary if you just want it to play,
-  // but it's fine to keep for potential UI changes.
-  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
 
   useEffect(() => {
+    // This effect ensures playback is attempted even if autoplay is blocked initially.
     const video = videoRef.current;
     if (video) {
-      // Set attributes to ensure playback on all devices
-      video.muted = true;
-      video.playsInline = true;
-      video.autoplay = true;
-
-      const playPromise = video.play();
-      if (playPromise !== undefined) {
-        playPromise
-          .then(() => {
-            // Autoplay started
-            setIsVideoPlaying(true);
-          })
-          .catch((error) => {
-            // Autoplay was prevented.
-            // This can happen in low-power mode or with data-saver on.
-            console.error("Autoplay was blocked by the browser:", error);
-            setIsVideoPlaying(false);
-          });
-      }
-
-      // Handlers to keep state in sync
-      const onPlay = () => setIsVideoPlaying(true);
-      const onPause = () => setIsVideoPlaying(false);
-
-      video.addEventListener("play", onPlay);
-      video.addEventListener("pause", onPause);
-
-      return () => {
-        video.removeEventListener("play", onPlay);
-        video.removeEventListener("pause", onPause);
-      };
+      video.play().catch((error) => {
+        console.error("Video autoplay was prevented:", error);
+      });
     }
   }, []);
 
@@ -140,12 +109,12 @@ export default function HeroSection() {
         <video
           ref={videoRef}
           loop
-          muted // Essential for mobile autoplay
-          playsInline // Essential for iOS to prevent fullscreen
-          autoPlay // Add this for good measure
+          muted // MUST be muted for autoplay
+          playsInline // CRITICAL for preventing fullscreen on iOS
+          autoPlay // Tells the browser to attempt playing immediately
+          controls={false} // Explicitly hides default browser controls
           className="w-full h-full object-cover"
-          // Add a poster image as a fallback
-          poster="/path/to/your/fallback-image.jpg"
+          poster="/path/to/your/fallback-image.jpg" // A fallback image is highly recommended
         >
           <source src="/assets/web-6.mp4" type="video/mp4" />
           Your browser does not support the video tag.
