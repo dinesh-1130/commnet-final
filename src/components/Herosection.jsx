@@ -93,6 +93,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 export default function HeroSection() {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const [videoError, setVideoError] = useState(false);
   const scrollRef = useRef(null);
   const videoRef = useRef(null);
 
@@ -103,6 +104,10 @@ export default function HeroSection() {
       // Handle video loading events to prevent gray background
       const handleCanPlay = () => {
         setIsVideoLoaded(true);
+        setVideoError(false);
+        // Force the video to be ready for mobile
+        video.currentTime = 0.1;
+
         // Try to play the video once it's ready
         const playPromise = video.play();
 
@@ -114,12 +119,42 @@ export default function HeroSection() {
             .catch((error) => {
               setIsVideoPlaying(false);
               console.log("Autoplay blocked by browser:", error);
+              // On mobile, user interaction might be required
+              if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+                // Set up click handler for mobile
+                const handleUserInteraction = () => {
+                  video
+                    .play()
+                    .then(() => {
+                      setIsVideoPlaying(true);
+                    })
+                    .catch(console.error);
+                  document.removeEventListener(
+                    "touchstart",
+                    handleUserInteraction
+                  );
+                  document.removeEventListener("click", handleUserInteraction);
+                };
+                document.addEventListener("touchstart", handleUserInteraction, {
+                  once: true,
+                });
+                document.addEventListener("click", handleUserInteraction, {
+                  once: true,
+                });
+              }
             });
         }
       };
 
       const handleLoadedData = () => {
         setIsVideoLoaded(true);
+        setVideoError(false);
+      };
+
+      const handleError = () => {
+        setVideoError(true);
+        setIsVideoLoaded(false);
+        console.error("Video failed to load");
       };
 
       // Handlers to keep the state in sync with the video's status
@@ -129,21 +164,28 @@ export default function HeroSection() {
       // Add all event listeners
       video.addEventListener("canplaythrough", handleCanPlay);
       video.addEventListener("loadeddata", handleLoadedData);
+      video.addEventListener("loadedmetadata", handleLoadedData);
       video.addEventListener("play", onPlay);
       video.addEventListener("pause", onPause);
+      video.addEventListener("error", handleError);
+
+      // For iOS, try to load the video
+      video.load();
 
       // Cleanup event listeners when the component unmounts
       return () => {
         video.removeEventListener("canplaythrough", handleCanPlay);
         video.removeEventListener("loadeddata", handleLoadedData);
+        video.removeEventListener("loadedmetadata", handleLoadedData);
         video.removeEventListener("play", onPlay);
         video.removeEventListener("pause", onPause);
+        video.removeEventListener("error", handleError);
       };
     }
   }, []);
 
   return (
-    <section className="relative w-screen h-screen overflow-hidden font-['Lato'] bg-black">
+    <section className="relative w-screen h-screen overflow-hidden font-['Lato']">
       {/* Video Container */}
       <div className="absolute top-0 left-0 w-full h-full z-0">
         <video
@@ -151,24 +193,71 @@ export default function HeroSection() {
           muted
           loop
           playsInline
+          autoPlay
+          preload="auto"
+          disablePictureInPicture
+          controls={false}
+          className={`w-full h-full object-cover`}
+          onContextMenu={(e) => e.preventDefault()}
+          style={{
+            objectFit: "cover",
+          }}
+          // iOS specific attributes
           webkit-playsinline="true"
           x-webkit-airplay="allow"
-          preload="metadata"
-          disablePictureInPicture
-          className={`w-full h-full object-cover transition-opacity duration-500 ${
-            isVideoLoaded ? "opacity-100" : "opacity-0"
-          }`}
-          onContextMenu={(e) => e.preventDefault()}
-          style={{ backgroundColor: "transparent" }}
         >
           <source src="/assets/web-6.mp4" type="video/mp4" />
+          <source src="/assets/web-6.webm" type="video/webm" />
           Your browser does not support the video tag.
         </video>
 
-        {/* Loading overlay - only shows while video is loading */}
-        {!isVideoLoaded && (
+        {/* Error fallback - shows if video fails to load */}
+        {videoError && (
           <div className="absolute inset-0 bg-black flex items-center justify-center z-5">
-            <div className="w-12 h-12 border-4 border-white/30 border-t-white rounded-full animate-spin"></div>
+            <div className="text-center text-white">
+              <p className="text-lg mb-2">Unable to load video</p>
+              <button
+                onClick={() => {
+                  setVideoError(false);
+                  setIsVideoLoaded(false);
+                  if (videoRef.current) {
+                    videoRef.current.load();
+                  }
+                }}
+                className="bg-white text-black px-4 py-2 rounded hover:bg-gray-200 transition"
+              >
+                Retry
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Mobile play button overlay (shows if autoplay fails) */}
+        {isVideoLoaded && !isVideoPlaying && !videoError && (
+          <div className="absolute inset-0 flex items-center justify-center z-15 bg-black/30">
+            <button
+              onClick={() => {
+                if (videoRef.current) {
+                  videoRef.current
+                    .play()
+                    .then(() => {
+                      setIsVideoPlaying(true);
+                    })
+                    .catch(console.error);
+                }
+              }}
+              className="bg-white/90 hover:bg-white text-black rounded-full p-4 transition-all duration-300 hover:scale-110"
+              aria-label="Play video"
+            >
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </button>
           </div>
         )}
       </div>
@@ -183,7 +272,6 @@ export default function HeroSection() {
           <span className="text-red-600">Communication </span>& Networking
           Partner
         </h1>
-
         <a href="/aboutus">
           <button className="mt-8 bg-white text-black font-semibold px-6 py-3 rounded-full hover:bg-gray-200 transition">
             Learn More
