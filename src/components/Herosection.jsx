@@ -1,46 +1,137 @@
+// import { useState, useRef, useEffect } from "react";
+// import { ChevronLeft, ChevronRight } from "lucide-react";
+
+// export default function HeroSection() {
+//   // State is no longer needed to track video playback, but can be kept for other UI elements if necessary.
+//   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+//   const scrollRef = useRef(null);
+//   const videoRef = useRef(null);
+
+//   // Set up the video to autoplay on all devices
+//   useEffect(() => {
+//     const video = videoRef.current;
+//     if (video) {
+//       // The .play() method returns a promise. We'll try to play and catch errors.
+//       const playPromise = video.play();
+
+//       if (playPromise !== undefined) {
+//         playPromise
+//           .then(() => {
+//             // Autoplay started successfully.
+//             setIsVideoPlaying(true);
+//           })
+//           .catch((error) => {
+//             // Autoplay was prevented by the browser.
+//             setIsVideoPlaying(false);
+//             console.log("Autoplay blocked by browser:", error);
+//           });
+//       }
+
+//       // Handlers to keep the state in sync with the video's status
+//       const onPlay = () => setIsVideoPlaying(true);
+//       const onPause = () => setIsVideoPlaying(false);
+
+//       video.addEventListener("play", onPlay);
+//       video.addEventListener("pause", onPause);
+
+//       // Cleanup event listeners when the component unmounts
+//       return () => {
+//         video.removeEventListener("play", onPlay);
+//         video.removeEventListener("pause", onPause);
+//       };
+//     }
+//   }, []); // The empty dependency array ensures this runs only once on mount.
+
+//   return (
+//     <section className="relative w-screen h-screen overflow-hidden font-['Lato']">
+//       {/* Video Container */}
+//       <div className="absolute top-0 left-0 w-full h-full z-0">
+//         <video
+//           ref={videoRef}
+//           muted
+//           loop
+//           playsInline
+//           // Non-standard attributes for full compatibility
+//           webkit-playsinline="true"
+//           x-webkit-airplay="allow"
+//           preload="auto"
+//           disablePictureInPicture
+//           className="w-full h-full object-cover"
+//           onContextMenu={(e) => e.preventDefault()} // Disables right-click menu
+//         >
+//           <source src="/assets/web-6.mp4" type="video/mp4" />
+//           Your browser does not support the video tag.
+//         </video>
+//       </div>
+
+//       {/* Overlay */}
+//       <div className="absolute inset-0 bg-black/40 z-10" />
+
+//       {/* Left-Aligned Heading */}
+//       <div className="relative z-20 flex top-20 flex-col items-start justify-center h-full px-6 text-white max-w-[90%] sm:max-w-[60%]">
+//         <h1 className="text-3xl sm:text-5xl font-bold leading-tight">
+//           Integration Simplified Your{" "}
+//           <span className="text-red-600">Communication </span>& Networking
+//           Partner
+//         </h1>
+
+//         <a href="/aboutus">
+//           <button className="mt-8 bg-white text-black font-semibold px-6 py-3 rounded-full hover:bg-gray-200 transition">
+//             Learn More
+//           </button>
+//         </a>
+//       </div>
+
+//       {/* Target for scroll button */}
+//       <div ref={scrollRef} className="h-[1px]" />
+//     </section>
+//   );
+// }
 import { useState, useRef, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function HeroSection() {
-  // State is no longer needed to track video playback, but can be kept for other UI elements if necessary.
-  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
-  const scrollRef = useRef(null);
   const videoRef = useRef(null);
+  // State for tracking playback isn't strictly necessary if you just want it to play,
+  // but it's fine to keep for potential UI changes.
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
 
-  // Set up the video to autoplay on all devices
   useEffect(() => {
     const video = videoRef.current;
     if (video) {
-      // The .play() method returns a promise. We'll try to play and catch errors.
-      const playPromise = video.play();
+      // Set attributes to ensure playback on all devices
+      video.muted = true;
+      video.playsInline = true;
+      video.autoplay = true;
 
+      const playPromise = video.play();
       if (playPromise !== undefined) {
         playPromise
           .then(() => {
-            // Autoplay started successfully.
+            // Autoplay started
             setIsVideoPlaying(true);
           })
           .catch((error) => {
-            // Autoplay was prevented by the browser.
+            // Autoplay was prevented.
+            // This can happen in low-power mode or with data-saver on.
+            console.error("Autoplay was blocked by the browser:", error);
             setIsVideoPlaying(false);
-            console.log("Autoplay blocked by browser:", error);
           });
       }
 
-      // Handlers to keep the state in sync with the video's status
+      // Handlers to keep state in sync
       const onPlay = () => setIsVideoPlaying(true);
       const onPause = () => setIsVideoPlaying(false);
 
       video.addEventListener("play", onPlay);
       video.addEventListener("pause", onPause);
 
-      // Cleanup event listeners when the component unmounts
       return () => {
         video.removeEventListener("play", onPlay);
         video.removeEventListener("pause", onPause);
       };
     }
-  }, []); // The empty dependency array ensures this runs only once on mount.
+  }, []);
 
   return (
     <section className="relative w-screen h-screen overflow-hidden font-['Lato']">
@@ -48,16 +139,13 @@ export default function HeroSection() {
       <div className="absolute top-0 left-0 w-full h-full z-0">
         <video
           ref={videoRef}
-          muted
           loop
-          playsInline
-          // Non-standard attributes for full compatibility
-          webkit-playsinline="true"
-          x-webkit-airplay="allow"
-          preload="auto"
-          disablePictureInPicture
+          muted // Essential for mobile autoplay
+          playsInline // Essential for iOS to prevent fullscreen
+          autoPlay // Add this for good measure
           className="w-full h-full object-cover"
-          onContextMenu={(e) => e.preventDefault()} // Disables right-click menu
+          // Add a poster image as a fallback
+          poster="/path/to/your/fallback-image.jpg"
         >
           <source src="/assets/web-6.mp4" type="video/mp4" />
           Your browser does not support the video tag.
@@ -67,23 +155,19 @@ export default function HeroSection() {
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/40 z-10" />
 
-      {/* Left-Aligned Heading */}
+      {/* Content */}
       <div className="relative z-20 flex top-20 flex-col items-start justify-center h-full px-6 text-white max-w-[90%] sm:max-w-[60%]">
         <h1 className="text-3xl sm:text-5xl font-bold leading-tight">
           Integration Simplified Your{" "}
           <span className="text-red-600">Communication </span>& Networking
           Partner
         </h1>
-
         <a href="/aboutus">
           <button className="mt-8 bg-white text-black font-semibold px-6 py-3 rounded-full hover:bg-gray-200 transition">
             Learn More
           </button>
         </a>
       </div>
-
-      {/* Target for scroll button */}
-      <div ref={scrollRef} className="h-[1px]" />
     </section>
   );
 }
