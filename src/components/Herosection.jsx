@@ -110,7 +110,7 @@ export default function HeroSection() {
           ref={videoRef}
           loop
           muted // MUST be muted for autoplay
-          playsInline // CRITICAL for preventing fullscreen on iOS
+          // CRITICAL for preventing fullscreen on iOS
           autoPlay // Tells the browser to attempt playing immediately
           controls={false} // Explicitly hides default browser controls
           className="w-full h-full object-cover"
