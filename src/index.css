@@ -52,7 +52,16 @@ html {
   font-optical-sizing: auto;
   font-display: swap;
 }
-/* Hide default video controls, especially the play/pause button on mobile */
+/*
+  This is the key rule to prevent the play/pause button from appearing on tap.
+*/
+video {
+  pointer-events: none;
+}
+
+/*
+  This is a fallback for older browsers and to be extra sure.
+*/
 video::-webkit-media-controls {
   display: none !important;
 }
