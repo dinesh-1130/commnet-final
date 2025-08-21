@@ -1,359 +1,68 @@
-// // // // // // import { useState, useRef } from "react";
-// // // // // // import { ChevronLeft, ChevronRight } from "lucide-react";
-
-// // // // // // export default function HeroSection() {
-// // // // // //   const [activeCard, setActiveCard] = useState(0);
-// // // // // //   const scrollRef = useRef(null);
-
-// // // // // //   const handleNext = () => {
-// // // // // //     setActiveCard((prev) => (prev + 1) % cards.length);
-// // // // // //   };
-
-// // // // // //   const handlePrev = () => {
-// // // // // //     setActiveCard((prev) => (prev - 1 + cards.length) % cards.length);
-// // // // // //   };
-
-// // // // // //   const scrollToNext = () => {
-// // // // // //     if (scrollRef.current) {
-// // // // // //       scrollRef.current.scrollIntoView({ behavior: "smooth" });
-// // // // // //     }
-// // // // // //   };
-
-// // // // // //   return (
-// // // // // //     <section className="relative w-screen h-screen overflow-hidden font-['Lato']">
-// // // // // //       {/* Static Background Image */}
-// // // // // //       <img
-// // // // // //         src="/assets/hero.jpg"
-// // // // // //         alt="Hero Background"
-// // // // // //         className="absolute top-0 left-0 w-full h-full object-cover z-0"
-// // // // // //       />
-
-// // // // // //       {/* Overlay */}
-// // // // // //       <div className="absolute inset-0 bg-black/40 z-10" />
-
-// // // // // //       {/* Right-side Nav Links */}
-// // // // // //       <div className="absolute top-80 right-16 z-20 text-white font-medium text-sm flex flex-col items-end space-y-2 leading-5">
-// // // // // //         <a href="#">Home</a>
-// // // // // //         <a href="#">About Us</a>
-// // // // // //         <a href="#">Services</a>
-// // // // // //         <a href="#">Industries</a>
-// // // // // //         <a href="#">Partnership</a>
-// // // // // //         <a href="#">Projects</a>
-// // // // // //         <a href="#">Contact Us</a>
-// // // // // //       </div>
-// // // // // //       <div className="absolute top-80 right-12 h-[190px] border-[2px] border-white z-20" />
-
-// // // // // //       {/* Left-Aligned Heading */}
-// // // // // //       <div className="relative z-20 flex top-20 flex-col items-start justify-center h-full px-6 text-white max-w-[90%] sm:max-w-[60%]">
-// // // // // //         <h1 className="text-3xl sm:text-5xl font-bold leading-tight">
-// // // // // //           Integration Simplified Your Communication & Networking Partner
-// // // // // //         </h1>
-// // // // // //         <button className="mt-8 bg-white text-black font-semibold px-6 py-3 rounded-full hover:bg-gray-200 transition">
-// // // // // //           Learn More
-// // // // // //         </button>
-// // // // // //       </div>
-
-// // // // // //       {/* Scroll Button */}
-// // // // // //       <button
-// // // // // //         onClick={scrollToNext}
-// // // // // //         className="absolute left-10 bottom-10 z-30 w-14 h-14 bg-white rounded-full flex items-center justify-center font-medium"
-// // // // // //       >
-// // // // // //         Scroll
-// // // // // //       </button>
-
-// // // // // //       {/* Target for scroll button */}
-// // // // // //       <div ref={scrollRef} className="h-[1px]" />
-// // // // // //     </section>
-// // // // // //   );
-// // // // // // }
-// // // import { useState, useRef } from "react";
-// // // import { ChevronLeft, ChevronRight } from "lucide-react";
-
-// // // export default function HeroSection() {
-// // //   const [activeCard, setActiveCard] = useState(0);
-// // //   const scrollRef = useRef(null);
-
-// // //   const handleNext = () => {
-// // //     setActiveCard((prev) => (prev + 1) % cards.length);
-// // //   };
-
-// // //   const handlePrev = () => {
-// // //     setActiveCard((prev) => (prev - 1 + cards.length) % cards.length);
-// // //   };
-
-// // //   const scrollToNext = () => {
-// // //     if (scrollRef.current) {
-// // //       scrollRef.current.scrollIntoView({ behavior: "smooth" });
-// // //     }
-// // //   };
-
-// // //   return (
-// // //     <section className="relative w-screen h-screen overflow-hidden font-['Lato']">
-// // //       {/* Static Background Image */}
-// // //       <video
-// // //         autoPlay
-// // //         muted
-// // //         loop
-// // //         playsInline
-// // //         className="absolute top-0 left-0 w-full h-full object-cover z-0"
-// // //       >
-// // //         <source src="/assets/web-2.mp4" type="video/webm" />
-// // //         Your browser does not support the video tag.
-// // //       </video>
-
-// // //       {/* Overlay */}
-// // //       <div className="absolute inset-0 bg-black/40 z-10" />
-
-// // //       {/*
-// // //       <div className="absolute top-80 right-16 z-20 text-white font-medium text-sm flex-col items-end space-y-2 leading-5 hidden md:flex">
-// // //         <a href="#">Home</a>
-// // //         <a href="#">About Us</a>
-// // //         <a href="#">Services</a>
-// // //         <a href="#">Industries</a>
-// // //         <a href="#">Partnership</a>
-// // //         <a href="#">Projects</a>
-// // //         <a href="#">Contact Us</a>
-// // //       </div>
-// // //       <div className="absolute top-80 right-12 h-[190px] border-[2px] border-white z-20 hidden md:block" /> */}
-
-// // //       {/* Left-Aligned Heading */}
-// // //       <div className="relative z-20 flex top-20 flex-col items-start justify-center h-full px-6 text-white max-w-[90%] sm:max-w-[60%]">
-// // //         <h1 className="text-3xl sm:text-5xl font-bold leading-tight">
-// // //           Integration Simplified Your{" "}
-// // //           <span className="text-red-600">Communication </span>& Networking
-// // //           Partner
-// // //         </h1>
-// // //         {/* <button className="mt-8 bg-white text-black font-semibold px-6 py-3 rounded-full hover:bg-gray-200 transition">
-// // //           Learn More
-// // //         </button> */}
-
-// // //         <a href="/aboutus">
-// // //           <button className="mt-8 bg-white text-black font-semibold px-6 py-3 rounded-full hover:bg-gray-200 transition">
-// // //             Learn More
-// // //           </button>
-// // //         </a>
-// // //       </div>
-
-// // //       {/* Scroll Button (hidden on mobile) */}
-// // //       {/* <button
-// // //   onClick={scrollToNext}
-// // //   className="absolute left-10 bottom-10 z-30 w-14 h-14 bg-white rounded-full items-center justify-center font-medium hidden md:flex"
-// // // >
-// // //   Scroll
-// // // </button> */}
-
-// // //       {/* Target for scroll button */}
-// // //       <div ref={scrollRef} className="h-[1px]" />
-// // //     </section>
-// // //   );
-// // // }
-// // import { useState, useRef, useEffect } from "react";
-// // import { ChevronLeft, ChevronRight } from "lucide-react";
-
-// // export default function HeroSection() {
-// //   const [activeCard, setActiveCard] = useState(0);
-// //   const scrollRef = useRef(null);
-// //   const videoRef = useRef(null);
-
-// //   const handleNext = () => {
-// //     setActiveCard((prev) => (prev + 1) % cards.length);
-// //   };
-
-// //   const handlePrev = () => {
-// //     setActiveCard((prev) => (prev - 1 + cards.length) % cards.length);
-// //   };
-
-// //   const scrollToNext = () => {
-// //     if (scrollRef.current) {
-// //       scrollRef.current.scrollIntoView({ behavior: "smooth" });
-// //     }
-// //   };
-
-// //   // Force video play on iOS
-// //   useEffect(() => {
-// //     const video = videoRef.current;
-// //     if (video) {
-// //       // Set video properties for iOS compatibility
-// //       video.setAttribute("webkit-playsinline", "true");
-// //       video.setAttribute("playsinline", "true");
-// //       video.muted = true;
-// //       video.defaultMuted = true;
-
-// //       // Try to play the video
-// //       const playPromise = video.play();
-// //       if (playPromise !== undefined) {
-// //         playPromise.catch((error) => {
-// //           console.log("Video autoplay failed:", error);
-// //         });
-// //       }
-// //     }
-// //   }, []);
-
-// //   return (
-// //     <section className="relative w-screen h-screen overflow-hidden font-['Lato']">
-// //       {/* Background Video with iOS optimization */}
-// //       <video
-// //         ref={videoRef}
-// //         autoPlay
-// //         muted
-// //         loop
-// //         playsInline
-// //         webkit-playsinline="true"
-// //         preload="metadata"
-// //         className="absolute top-0 left-0 w-full h-full object-cover z-0"
-// //         style={{
-// //           objectFit: "cover",
-// //           width: "100%",
-// //           height: "100%",
-// //         }}
-// //       >
-// //         <source src="/assets/web-6.mp4" type="video/mp4" />
-
-// //         {/* Fallback image for devices that don't support video */}
-// //         <img
-// //           src="/assets/fallback-bg.jpg"
-// //           alt="Background"
-// //           className="absolute top-0 left-0 w-full h-full object-cover"
-// //         />
-// //       </video>
-
-// //       {/* Overlay */}
-// //       <div className="absolute inset-0 bg-black/40 z-10" />
-
-// //       {/* Left-Aligned Heading */}
-// //       <div className="relative z-20 flex top-20 flex-col items-start justify-center h-full px-6 text-white max-w-[90%] sm:max-w-[60%]">
-// //         <h1 className="text-3xl sm:text-5xl font-bold leading-tight">
-// //           Integration Simplified Your{" "}
-// //           <span className="text-red-600">Communication </span>& Networking
-// //           Partner
-// //         </h1>
-
-// //         <a href="/aboutus">
-// //           <button className="mt-8 bg-white text-black font-semibold px-6 py-3 rounded-full hover:bg-gray-200 transition">
-// //             Learn More
-// //           </button>
-// //         </a>
-// //       </div>
-
-// //       {/* Target for scroll button */}
-// //       <div ref={scrollRef} className="h-[1px]" />
-// //     </section>
-// //   );
-// // }
 // import { useState, useRef, useEffect } from "react";
 // import { ChevronLeft, ChevronRight } from "lucide-react";
 
 // export default function HeroSection() {
-//   const [activeCard, setActiveCard] = useState(0);
+//   // State is no longer needed to track video playback, but can be kept for other UI elements if necessary.
+//   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
 //   const scrollRef = useRef(null);
 //   const videoRef = useRef(null);
 
-//   const handleNext = () => {
-//     setActiveCard((prev) => (prev + 1) % cards.length);
-//   };
-
-//   const handlePrev = () => {
-//     setActiveCard((prev) => (prev - 1 + cards.length) % cards.length);
-//   };
-
-//   const scrollToNext = () => {
-//     if (scrollRef.current) {
-//       scrollRef.current.scrollIntoView({ behavior: "smooth" });
-//     }
-//   };
-
-//   // Enhanced video setup for all devices including iOS
+//   // Set up the video to autoplay on all devices
 //   useEffect(() => {
 //     const video = videoRef.current;
 //     if (video) {
-//       // Set all necessary attributes for cross-device compatibility
-//       video.setAttribute("webkit-playsinline", "true");
-//       video.setAttribute("playsinline", "true");
-//       video.setAttribute("x-webkit-airplay", "allow");
-//       video.muted = true;
-//       video.defaultMuted = true;
-//       video.autoplay = true;
-//       video.loop = true;
-//       video.controls = false;
-//       video.disablePictureInPicture = true;
+//       // The .play() method returns a promise. We'll try to play and catch errors.
+//       const playPromise = video.play();
 
-//       // Additional iOS-specific settings
-//       video.setAttribute("preload", "auto");
-//       video.setAttribute("poster", ""); // Empty poster to prevent thumbnail
-
-//       // Remove any potential controls or UI elements
-//       video.removeAttribute("controls");
-//       video.style.pointerEvents = "none"; // Prevent tap to show controls
-
-//       // Force play with error handling
-//       const attemptPlay = async () => {
-//         try {
-//           await video.play();
-//           console.log("Video playing successfully");
-//         } catch (error) {
-//           console.log("Initial autoplay failed, retrying...", error);
-//           // Retry after a short delay
-//           setTimeout(async () => {
-//             try {
-//               await video.play();
-//             } catch (retryError) {
-//               console.log("Video autoplay failed after retry:", retryError);
-//             }
-//           }, 100);
-//         }
-//       };
-
-//       // Start playback
-//       if (video.readyState >= 2) {
-//         attemptPlay();
-//       } else {
-//         video.addEventListener("loadeddata", attemptPlay, { once: true });
+//       if (playPromise !== undefined) {
+//         playPromise
+//           .then(() => {
+//             // Autoplay started successfully.
+//             setIsVideoPlaying(true);
+//           })
+//           .catch((error) => {
+//             // Autoplay was prevented by the browser.
+//             setIsVideoPlaying(false);
+//             console.log("Autoplay blocked by browser:", error);
+//           });
 //       }
 
-//       // Handle visibility changes (when user switches tabs)
-//       const handleVisibilityChange = () => {
-//         if (!document.hidden && video.paused) {
-//           video.play().catch(console.log);
-//         }
-//       };
+//       // Handlers to keep the state in sync with the video's status
+//       const onPlay = () => setIsVideoPlaying(true);
+//       const onPause = () => setIsVideoPlaying(false);
 
-//       document.addEventListener("visibilitychange", handleVisibilityChange);
+//       video.addEventListener("play", onPlay);
+//       video.addEventListener("pause", onPause);
 
-//       // Cleanup
+//       // Cleanup event listeners when the component unmounts
 //       return () => {
-//         document.removeEventListener("visibilitychange", handleVisibilityChange);
+//         video.removeEventListener("play", onPlay);
+//         video.removeEventListener("pause", onPause);
 //       };
 //     }
-//   }, []);
+//   }, []); // The empty dependency array ensures this runs only once on mount.
 
 //   return (
 //     <section className="relative w-screen h-screen overflow-hidden font-['Lato']">
-//       {/* Background Video optimized for all devices */}
-//       <video
-//         ref={videoRef}
-//         autoPlay
-//         muted
-//         loop
-//         playsInline
-//         webkit-playsinline="true"
-//         x-webkit-airplay="allow"
-//         preload="auto"
-//         disablePictureInPicture
-//         className="absolute top-0 left-0 w-full h-full object-cover z-0"
-//         style={{
-//           objectFit: "cover",
-//           width: "100%",
-//           height: "100%",
-//           pointerEvents: "none", // Prevents tap interactions that might show controls
-//         }}
-//         onContextMenu={(e) => e.preventDefault()} // Disable right-click menu
-//         onLoadedData={(e) => {
-//           // Ensure video plays when loaded
-//           e.target.play().catch(console.log);
-//         }}
-//       >
-//         <source src="/assets/web-6.mp4" type="video/mp4" />
-//       </video>
+//       {/* Video Container */}
+//       <div className="absolute top-0 left-0 w-full h-full z-0">
+//         <video
+//           ref={videoRef}
+//           muted
+//           loop
+//           playsInline
+//           // Non-standard attributes for full compatibility
+//           webkit-playsinline="true"
+//           x-webkit-airplay="allow"
+//           preload="auto"
+//           disablePictureInPicture
+//           className="w-full h-full object-cover"
+//           onContextMenu={(e) => e.preventDefault()} // Disables right-click menu
+//         >
+//           <source src="/assets/web-6.mp4" type="video/mp4" />
+//           Your browser does not support the video tag.
+//         </video>
+//       </div>
 
 //       {/* Overlay */}
 //       <div className="absolute inset-0 bg-black/40 z-10" />
@@ -378,53 +87,63 @@
 //     </section>
 //   );
 // }
-
 import { useState, useRef, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function HeroSection() {
-  // State is no longer needed to track video playback, but can be kept for other UI elements if necessary.
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const scrollRef = useRef(null);
   const videoRef = useRef(null);
 
-  // Set up the video to autoplay on all devices
+  // Set up the video to autoplay on all devices and handle loading
   useEffect(() => {
     const video = videoRef.current;
     if (video) {
-      // The .play() method returns a promise. We'll try to play and catch errors.
-      const playPromise = video.play();
+      // Handle video loading events to prevent gray background
+      const handleCanPlay = () => {
+        setIsVideoLoaded(true);
+        // Try to play the video once it's ready
+        const playPromise = video.play();
 
-      if (playPromise !== undefined) {
-        playPromise
-          .then(() => {
-            // Autoplay started successfully.
-            setIsVideoPlaying(true);
-          })
-          .catch((error) => {
-            // Autoplay was prevented by the browser.
-            setIsVideoPlaying(false);
-            console.log("Autoplay blocked by browser:", error);
-          });
-      }
+        if (playPromise !== undefined) {
+          playPromise
+            .then(() => {
+              setIsVideoPlaying(true);
+            })
+            .catch((error) => {
+              setIsVideoPlaying(false);
+              console.log("Autoplay blocked by browser:", error);
+            });
+        }
+      };
+
+      const handleLoadedData = () => {
+        setIsVideoLoaded(true);
+      };
 
       // Handlers to keep the state in sync with the video's status
       const onPlay = () => setIsVideoPlaying(true);
       const onPause = () => setIsVideoPlaying(false);
 
+      // Add all event listeners
+      video.addEventListener("canplaythrough", handleCanPlay);
+      video.addEventListener("loadeddata", handleLoadedData);
       video.addEventListener("play", onPlay);
       video.addEventListener("pause", onPause);
 
       // Cleanup event listeners when the component unmounts
       return () => {
+        video.removeEventListener("canplaythrough", handleCanPlay);
+        video.removeEventListener("loadeddata", handleLoadedData);
         video.removeEventListener("play", onPlay);
         video.removeEventListener("pause", onPause);
       };
     }
-  }, []); // The empty dependency array ensures this runs only once on mount.
+  }, []);
 
   return (
-    <section className="relative w-screen h-screen overflow-hidden font-['Lato']">
+    <section className="relative w-screen h-screen overflow-hidden font-['Lato'] bg-black">
       {/* Video Container */}
       <div className="absolute top-0 left-0 w-full h-full z-0">
         <video
@@ -432,17 +151,26 @@ export default function HeroSection() {
           muted
           loop
           playsInline
-          // Non-standard attributes for full compatibility
           webkit-playsinline="true"
           x-webkit-airplay="allow"
-          preload="auto"
+          preload="metadata"
           disablePictureInPicture
-          className="w-full h-full object-cover"
-          onContextMenu={(e) => e.preventDefault()} // Disables right-click menu
+          className={`w-full h-full object-cover transition-opacity duration-500 ${
+            isVideoLoaded ? "opacity-100" : "opacity-0"
+          }`}
+          onContextMenu={(e) => e.preventDefault()}
+          style={{ backgroundColor: "transparent" }}
         >
           <source src="/assets/web-6.mp4" type="video/mp4" />
           Your browser does not support the video tag.
         </video>
+
+        {/* Loading overlay - only shows while video is loading */}
+        {!isVideoLoaded && (
+          <div className="absolute inset-0 bg-black flex items-center justify-center z-5">
+            <div className="w-12 h-12 border-4 border-white/30 border-t-white rounded-full animate-spin"></div>
+          </div>
+        )}
       </div>
 
       {/* Overlay */}
