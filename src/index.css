@@ -1,19 +1,18 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
 }
 * {
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   width: 100%;
   max-width: 100%;
   overflow-x: hidden !important;
@@ -52,4 +51,8 @@ html {
   font-style: normal;
   font-optical-sizing: auto;
   font-display: swap;
+}
+/* Hide default video controls, especially the play/pause button on mobile */
+video::-webkit-media-controls {
+  display: none !important;
 }
