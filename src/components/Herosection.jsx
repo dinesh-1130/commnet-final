@@ -231,35 +231,6 @@ export default function HeroSection() {
             </div>
           </div>
         )}
-
-        {/* Mobile play button overlay (shows if autoplay fails) */}
-        {isVideoLoaded && !isVideoPlaying && !videoError && (
-          <div className="absolute inset-0 flex items-center justify-center z-15 bg-black/30">
-            <button
-              onClick={() => {
-                if (videoRef.current) {
-                  videoRef.current
-                    .play()
-                    .then(() => {
-                      setIsVideoPlaying(true);
-                    })
-                    .catch(console.error);
-                }
-              }}
-              className="bg-white/90 hover:bg-white text-black rounded-full p-4 transition-all duration-300 hover:scale-110"
-              aria-label="Play video"
-            >
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-              >
-                <path d="M8 5v14l11-7z" />
-              </svg>
-            </button>
-          </div>
-        )}
       </div>
 
       {/* Overlay */}
