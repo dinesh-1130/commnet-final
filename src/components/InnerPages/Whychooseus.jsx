@@ -632,11 +632,11 @@ export default function WhyChooseUs() {
   }, []);
 
   const team = [
-    { name: "Karthik", title: "CEO", image: "/assets/md-1.jpeg" },
+    { name: "Karthik", title: "CEO" },
     { name: "Gopi", title: "Project Director" },
     { name: "Askar", title: "Business Development Manager" },
     { name: "Swathi", title: "Finance Manager" },
-    { name: "Ajay", title: "Key Account Manager" },
+    // { name: "Ajay", title: "Key Account Manager" },
   ];
 
   return (
@@ -723,33 +723,23 @@ export default function WhyChooseUs() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-            <div data-aos="fade-right" className="space-y-4">
-              <h3 className="text-xl md:text-2xl font-bold">
+          <div className="grid grid-cols-1 gap-10 items-center text-center">
+            <div data-aos="fade-up" className="space-y-4 max-w-2xl mx-auto">
+              <h2 className="text-3xl md:text-4xl font-bold mb-4">
                 A Message From Our Leadership
-              </h3>
+              </h2>
+
               <p className="text-black text-sm md:text-base">
                 Our success is built on understanding the unique challenges our
                 clients face and delivering tailored solutions that drive real
                 business outcomes.
               </p>
+
               <p className="text-black text-sm md:text-base">
-                At Commnet, we believe that technology should serve people - not
+                At Commnet, we believe that technology should serve people – not
                 the other way around. Our approach combines technical excellence
                 with a deep understanding of human needs.
               </p>
-            </div>
-
-            <div data-aos="fade-left" className="relative">
-              <div className="w-full max-w-2xl h-64 rounded-xl overflow-hidden mx-auto -ml-6">
-                <img
-                  src="/assets/md-1.jpeg"
-                  alt="Managing Director"
-                  className="w-full h-full object-contain"
-                />
-              </div>
-
-              <div className="absolute -bottom-6 -right-6 w-20 h-20  rounded-full opacity-30 blur-lg"></div>
             </div>
           </div>
         </div>
@@ -1159,14 +1149,13 @@ export default function WhyChooseUs() {
 
                 {/* Second row - 2 members (centered) */}
                 <div className="flex justify-center">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {team.slice(3, 5).map((member, index) => (
+                  <div className="w-full md:w-1/3">
+                    {team.slice(3, 4).map((member, index) => (
                       <div
                         key={index + 3}
                         data-aos="fade-up"
                         data-aos-delay="100"
-                        className="bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 w-full"
-                        style={{ minWidth: "200px" }}
+                        className="bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 mx-auto"
                       >
                         <div className="w-full h-[200px] bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center p-3">
                           {member.image ? (
@@ -1183,6 +1172,7 @@ export default function WhyChooseUs() {
                             </div>
                           )}
                         </div>
+
                         <div className="p-3 text-center">
                           <h4 className="text-base font-bold text-gray-800 mb-1">
                             {member.name}
